@@ -25,8 +25,8 @@ const useStyles = makeStyles({
 
 const mockGameData = [
     {
-        homeTeam: "Knicks",
-        homeScore: "23",
+        homeTeam: "Dallas Mavericks",
+        homeScore: "23", 
         awayTeam: "Knicks",
         awayScore: "30",
         quarter: "1Q",
@@ -60,7 +60,7 @@ const LiveGames = (props) => {
                     LIVE    
                 </h1>
             </Grid>
-            {mockGameData.map(data => //change to props.liveGames
+            {props.liveGames.map(data => //change to props.liveGames
                 <Grid item xs={12}>
                     <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam}/>
                 </Grid>

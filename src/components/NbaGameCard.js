@@ -75,7 +75,7 @@ const NbaGameCard = (props) => {
     const classes = useStyles();
     
     const setTeams = (hTeam, aTeam) => {
-        props.togalModal()
+        // props.togalModal()
         props.setHomeTeam(hTeam)
         props.setAwayTeam(aTeam)
     }
