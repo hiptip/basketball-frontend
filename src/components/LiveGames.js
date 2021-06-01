@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     '@keyframes testAnimation': {
         from: { opacity: 1 },
         to: { opacity: .2 },
-      },
+    },
 
     live: {
         fontFamily: 'Roboto Mono',
@@ -15,18 +15,18 @@ const useStyles = makeStyles({
         fontWeight: 'bold',
         fontSize: 18,
         borderStyle: 'solid',
-        borderRadius: 15,    
+        borderRadius: 15,
         padding: 3,
         color: 'red',
         animation: '$testAnimation 1.5s infinite alternate ease-in-out'
-        
+
     },
 });
 
 const mockGameData = [
     {
         homeTeam: "Dallas Mavericks",
-        homeScore: "23", 
+        homeScore: "23",
         awayTeam: "Knicks",
         awayScore: "30",
         quarter: "1Q",
@@ -57,12 +57,12 @@ const LiveGames = (props) => {
         <Grid container spacing={3} align="center" justify="center" alignItems="center">
             <Grid item>
                 <h1 className={classes.live}>
-                    LIVE    
+                    LIVE
                 </h1>
             </Grid>
             {props.liveGames.map(data => //change to props.liveGames
                 <Grid item xs={12}>
-                    <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam}/>
+                    <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} />
                 </Grid>
             )}
         </Grid>

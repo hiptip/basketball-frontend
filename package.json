@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "hookrouter": "^1.2.5",
     "huejay": "^1.9.0",
     "material-ui": "^0.20.2",
     "nba-color": "^1.4.1",

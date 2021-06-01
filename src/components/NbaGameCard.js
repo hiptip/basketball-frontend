@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -73,7 +74,13 @@ const useStyles = makeStyles({
 
 const NbaGameCard = (props) => {
     const classes = useStyles();
-    
+    // const routes = {
+    //     '/': () => <Home />,
+    //     '/teamOneColor': () => <SetColor />,
+    //     '/teamTwoColor': () => <SetColor />,
+    // };
+    // const routeResults = useRoutes(routes);
+
     const setTeams = (hTeam, aTeam) => {
         // props.togalModal()
         props.setHomeTeam(hTeam)

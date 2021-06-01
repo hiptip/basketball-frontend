@@ -9,6 +9,7 @@ import LiveGames from './components/LiveGames';
 import { RGBtoXY, getGradientColor, hexToRgb } from './util/colorFunctions'
 import PickColors from './components/PickColors';
 import "./styles.css";
+import ChooseLights from './components/ChooseLights';
 
 const App = () => {
   const [homeColor, setHomeColor] = useState("#2626ff")
@@ -182,6 +183,7 @@ const App = () => {
         <div className="App">
           <LiveGames liveGames={liveGames} setHomeTeam={setHomeTeam} setAwayTeam={setAwayTeam} />
           <PickColors />
+          <ChooseLights />
         </div>
       }
     </div>
