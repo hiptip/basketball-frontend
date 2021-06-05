@@ -5,9 +5,7 @@ const ChooseLights = (props) => {
 
     const onChange = (e) => {
         let checked = checkedLights
-
-        console.log(e.target.value)
-
+        
         if (e.target.checked) {
             // add the numerical value of the checkbox to options array
             checked.push(e.target.value)
@@ -16,7 +14,6 @@ const ChooseLights = (props) => {
             let index = checked.indexOf(e.target.value)
             checked.splice(index, 1)
         }
-
         // update the state with the new array of options
         setCheckedLights(checked)
     }
