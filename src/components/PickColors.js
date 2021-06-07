@@ -33,15 +33,39 @@ const useStyles = makeStyles({
 const PickColors = React.memo((props) => {
     const classes = useStyles();
     const [isOpen, setIsOpen] = useState(false);
+    const [teamColor, setTeamColor] = useState()
+    const [team, setTeam] = useState(1)
+    const [logo, setLogo] = useState()
+    const [name, setName] = useState()
 
     const handleChangeComplete = (color) => {
-        console.log(color)
-        // setTeamColor(color.hex)
+        console.log(color.hex)
+        setTeamColor(color.hex)
     }
 
     const toggleModal = () => {
         setIsOpen(!isOpen);
     }
+
+    const nextScreen = () => {
+        if (team === 2) {
+            props.setHomeColor(teamColor)
+            props.setGameView(true)
+            toggleModal()
+        }
+        props.setAwayColor(teamColor)
+        setTeam(team + 1)
+        setLogo(props.homeLogo)
+        setName(props.homeName)
+        
+    }
+
+    const prevScreen = () => {
+        setTeam(team - 1)
+        setLogo(props.awayLogo)
+        setName(props.awayName)
+    }
+
     return (
         <div className="App">
             <button onClick={toggleModal}>Open modal</button>
@@ -56,11 +80,11 @@ const PickColors = React.memo((props) => {
             >
                 <div>
                     <p>Logo</p>
-                    <h1>Choose Team 1 Color</h1>
+                    <h1>Choose Team {team} Color</h1>
                     <ChromePicker
-                        onChangeComplete={handleChangeComplete} 
+                        // onChangeComplete={handleChangeComplete} 
                     />
-                    <button>Next</button>
+                    {(team === 1) ? <button onClick={nextScreen}>NEXT</button> : <div><button onClick={prevScreen}>BACK</button><button onClick={nextScreen}>NEXT</button></div>}
                 </div>
             </Modal>
         </div>

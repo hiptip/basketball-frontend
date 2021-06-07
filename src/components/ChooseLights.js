@@ -1,11 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+
+
+    modalBox: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        width: '40%',
+        height: '65%',
+        borderRadius: 20,
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center',
+        backgroundColor: "white",
+        // padding: 50
+    },
+    list: {
+        textAlign: "left",
+        width: "40%",
+        margin: "auto",
+        listStyleType: "none",
+    },
+    listItem: {
+        padding: 5
+    },
+    button: {
+        position: 'absolute',
+        backgroundColor: 'black',
+        border: 'none',
+        color: 'white',
+        padding: '15px 32px',
+        textAlign: 'center',
+        textDecoration: 'none',
+        display: 'inline-block',
+        fontSize: '16px',
+        borderRadius: '100px',
+        width: 230,
+        left: 0,
+        right: 0,
+        margin: 'auto',
+        bottom: 50,
+        fontFamily: 'Roboto Mono',
+        fontWeight: 700,
+        '&:hover': {
+            backgroundColor: '#333131',
+        },
+    }
+})
 
 const ChooseLights = (props) => {
+    const classes = useStyles();
     const [checkedLights, setCheckedLights] = useState([]);
 
     const onChange = (e) => {
         let checked = checkedLights
-        
+
         if (e.target.checked) {
             // add the numerical value of the checkbox to options array
             checked.push(e.target.value)
@@ -391,10 +441,23 @@ const ChooseLights = (props) => {
         }
     }
 
+
+    const setLights = () => {
+        props.setCheckedLights(checkedLights)
+        props.setHueConfigured(true)
+    }
+
+
     return (
-        Object.entries(mockData).map(([key, value]) =>
-            <li key={key}><input type="checkbox" value={key} onChange={onChange} /> {value.name}</li>
-        )
+        <div className={classes.modalBox}>
+            <h2>Choose lights</h2>
+            <ul className={classes.list}>
+                {props.lights && Object.entries(mockData).map(([key, value]) =>
+                    <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} /> {value.name}</li>
+                )}
+            </ul>
+            <button className={classes.button} onClick={setLights}>NEXT</button>
+        </div>
     )
 }
 

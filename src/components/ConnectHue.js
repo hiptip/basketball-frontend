@@ -5,6 +5,7 @@ import BGImage from '../assets/bg1.svg';
 import BBall from '../assets/splash-basketball.svg'
 import Static from '../assets/splash-lockup.svg'
 import BridgeGif from '../assets/philips-loader.gif'
+import ChooseLights from './ChooseLights';
 
 const useStyles = makeStyles({
     "@keyframes gradient": {
@@ -111,6 +112,8 @@ const ConnectHue = (props) => {
     const [intervalId, setIntervalId] = useState()
     const [waiting, setWaiting] = useState(false)
     const [bridgeIp, setBridgeIp] = useState()
+    const [hueConnected, setHueConnected] = useState(false)
+    const [lights, setLights] = useState({})
 
     const getBridgeApi = () => {
         setWaiting(true)
@@ -128,7 +131,7 @@ const ConnectHue = (props) => {
                 body: JSON.stringify({ "devicetype": "hue-nba" })
             })
                 .then(res => res.json())
-                .then(res => checkSuccess(res))
+                .then(res => checkSuccess(res, ip))
         }, 3000)
         setIntervalId(intId)
         setTimeout(() => {
@@ -136,34 +139,45 @@ const ConnectHue = (props) => {
         }, 30000)
     }
 
-    const checkSuccess = (res) => {
+    const getLights = (ip) => {
+        fetch(`https://${ip}/api/${props.hueUsername}/lights`)
+            .then(res => res.json())
+            .then(res => setLights(res))
+        
+    }
+
+    const checkSuccess = (res, ip) => {
         const obj = res[0]
         if ('success' in obj) {
             clearInterval(intervalId)
             localStorage.setItem('hueUsername', obj["success"]["username"])
             props.setHueUsername(obj["success"]["username"])
-            props.setHueConnected(true)
+            setHueConnected(true)
+            getLights(ip)
         }
     }
 
     return (
         <div className={classes.background}>
             <div className={classes.lines}></div>
-            {!waiting &&
+            {}
+            {(!waiting && !hueConnected) &&
                 <div>
                     <div className={classes.center}>
                         <img className={classes.staticImage} src={Static} alt="" />
                         <button className={classes.button} onClick={getBridgeApi}>Start Pairing</button>
                     </div>
-                    <h1>{bridgeIp}</h1>
 
                 </div>
             }
-            {waiting &&
+            {(waiting && !hueConnected) &&
                 <div className={classes.modalBox}>
                     <img className={classes.loader} src={BridgeGif} alt="" />
                     <p className={classes.info}>Click the button on your hub to pair</p>
                 </div>
+            }
+            {hueConnected &&
+                <ChooseLights lights={lights} setCheckedLights={props.setCheckedLights} setHueConfigured={props.setHueConfigured} />
             }
         </div>
     )

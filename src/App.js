@@ -12,18 +12,20 @@ import "./styles.css";
 import ChooseLights from './components/ChooseLights';
 
 const App = () => {
-  const [homeColor, setHomeColor] = useState("#2626ff")
-  const [visitorColor, setVisitorColor] = useState("#fa0021")
+  const [homeColor, setHomeColor] = useState("#1271ff")
+  const [awayColor, setAwayColor] = useState("#009e05")
   const [neutralColor, setNeutralColor] = useState([255, 201, 74])
   const [intervalId, setIntervalId] = useState()
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [hueConnected, setHueConnected] = useState(false)
+  const [hueConfigured, setHueConfigured] = useState(false)
   const [hueUsername, setHueUsername] = useState("rpFOVnRT3f3nX484o6arbY-HzrnjjObfsihT3n82")
   const [liveGames, setLiveGames] = useState([])
-  const [homeTeam, setHomeTeam] = useState("Dallas Mavericks")
+  const [homeTeam, setHomeTeam] = useState("Brooklyn Nets")
   const [awayTeam, setAwayTeam] = useState()
   const [timeStamp, setTimeStamp] = useState('')
-  const [delay, setDelay] = useState(67000)
+  const [delay, setDelay] = useState(45000)
+  const [checkedLights, setCheckedLights] = useState([])
+  const [gameView, setGameView] = useState(false)
 
   const nbaTeams = [
     'ATLANTA HAWKS',
@@ -49,7 +51,7 @@ const App = () => {
     'OKLAHOMA CITY THUNDER',
     'ORLANDO MAGIC',
     'PHILADELPHIA 76ERS',
-    'PHOENIX SUNS',
+    'PHOENIX SUNS',       
     'PORTLAND TRAIL BLAZERS',
     'SACRAMENTO KINGS',
     'SAN ANTONIO SPURS',
@@ -87,7 +89,7 @@ const App = () => {
       .then(response => response.json())
       .then(response => {
         if (response[0]) {
-          console.log(response[0].games)
+          console.log(response[0])
           // setTimeStamp(response[0].timeStamp)
           return scoreToXY(parseInt(response[0].homeScore), parseInt(response[0].awayScore))
         }
@@ -109,6 +111,7 @@ const App = () => {
       console.log("ASDFASDFASDF")
       let percent = diff / 15
       let gradientColor = getGradientColor(neutralHex, homeColor, percent)
+      console.log(gradientColor)
       let rgb = hexToRgb(gradientColor)
       return RGBtoXY(rgb.r, rgb.g, rgb.b)
     }
@@ -116,7 +119,7 @@ const App = () => {
       let diff = vScore - hScore
       console.log("ASDFASDFASDF")
       let percent = diff / 15
-      let gradientColor = getGradientColor(neutralHex, visitorColor, percent)
+      let gradientColor = getGradientColor(neutralHex, awayColor, percent)
       let rgb = hexToRgb(gradientColor)
       return RGBtoXY(rgb.r, rgb.g, rgb.b)
     }
@@ -128,7 +131,6 @@ const App = () => {
     let username = localStorage.getItem("hueUsername")
     if (username) {
       setHueUsername(username)
-      setHueConnected(true)
     }
     // fetchLiveGames()
   }, []);
@@ -157,7 +159,6 @@ const App = () => {
       .then(res => setLiveGames(res))
   }
 
-
   const connectHue = () => {
     // const delay = ms => new Promise(res => setTimeout(res, ms));
     // const { hex: hHex } = getMainColor(hName);
@@ -167,7 +168,8 @@ const App = () => {
     // setVisitorColor(vHex)
     // await delay(3000)
     const intervalId = setInterval(() => {
-      getAllGames()
+      // getAllGames()
+      getGameScore()
     }, 6000)
     setIntervalId(intervalId)
   }
@@ -178,12 +180,16 @@ const App = () => {
 
   return (
     <div>
-      {!hueConnected && <ConnectHue setHueUsername={setHueUsername} setHueConnected={setHueConnected} />}
-      { hueConnected &&
+      {!hueConfigured && <ConnectHue setHueUsername={setHueUsername} setHueConfigured={setHueConfigured} hueUsername={hueUsername} setCheckedLights={setCheckedLights} />}
+      { (hueConfigured && !gameView) &&
         <div className="App">
           <LiveGames liveGames={liveGames} setHomeTeam={setHomeTeam} setAwayTeam={setAwayTeam} />
-          <PickColors />
-          <ChooseLights />
+          <PickColors setAwayColor={setAwayColor} setHomeColor={setHomeColor} awayTeam={awayTeam} homeTeam={homeTeam} setGameView={setGameView} />
+        </div>
+      }
+      { (hueConfigured && gameView) &&
+        <div>
+          <h1>We watchsingk aegasg aeragaeme gasd</h1>
         </div>
       }
     </div>
