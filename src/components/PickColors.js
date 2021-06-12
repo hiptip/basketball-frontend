@@ -43,15 +43,19 @@ const PickColors = React.memo((props) => {
         setTeamColor(color.hex)
     }
 
-    const toggleModal = () => {
-        setIsOpen(!isOpen);
-    }
+    // const toggleModal = () => {
+    //     setIsOpen(!isOpen);
+    // }
+
+    // const closeScreen = () => {
+    //     props.setIsOpen(false)
+    // }
 
     const nextScreen = () => {
         if (team === 2) {
             props.setHomeColor(teamColor)
             props.setGameView(true)
-            toggleModal()
+            props.toggleModal()
         }
         props.setAwayColor(teamColor)
         setTeam(team + 1)
@@ -68,15 +72,15 @@ const PickColors = React.memo((props) => {
 
     return (
         <div className="App">
-            <button onClick={toggleModal}>Open modal</button>
 
             <Modal
-                isOpen={isOpen}
-                onRequestClose={toggleModal}
+                isOpen={props.isOpen}
+                onRequestClose={props.closeScreen}
                 contentLabel="My dialog"
                 className={classes.mymodal}
                 overlayClassName={classes.myoverlay}
-                closeTimeoutMS={500}
+                closeTimeoutMS={300}
+                shouldCloseOnOverlayClick={true}
             >
                 <div>
                     <p>Logo</p>

@@ -111,7 +111,7 @@ const ConnectHue = (props) => {
     const classes = useStyles();
     const [intervalId, setIntervalId] = useState()
     const [waiting, setWaiting] = useState(false)
-    const [bridgeIp, setBridgeIp] = useState()
+    // const [bridgeIp, setBridgeIp] = useState()
     const [hueConnected, setHueConnected] = useState(false)
     const [lights, setLights] = useState({})
 
@@ -124,7 +124,7 @@ const ConnectHue = (props) => {
 
     const linkHue = (res) => {
         const ip = res[0].internalipaddress
-        setBridgeIp(ip)
+        props.setBridgeIp(ip)
         const intId = setInterval(() => {
             fetch(`http://${ip}/api`, {
                 method: 'POST',

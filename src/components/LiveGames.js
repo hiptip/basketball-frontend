@@ -62,7 +62,7 @@ const LiveGames = (props) => {
             </Grid>
             {props.liveGames.map(data => //change to props.liveGames
                 <Grid item xs={12}>
-                    <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} />
+                    <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} setGameView={props.setGameView} setSingleGameData={props.setSingleGameData} />
                 </Grid>
             )}
         </Grid>

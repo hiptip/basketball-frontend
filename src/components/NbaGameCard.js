@@ -6,6 +6,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from '@material-ui/core/Grid';
+import PickColors from './PickColors';
 
 
 const useStyles = makeStyles({
@@ -74,6 +75,7 @@ const useStyles = makeStyles({
 
 const NbaGameCard = (props) => {
     const classes = useStyles();
+    const [isOpen, setIsOpen] = useState(false);
     // const routes = {
     //     '/': () => <Home />,
     //     '/teamOneColor': () => <SetColor />,
@@ -81,15 +83,31 @@ const NbaGameCard = (props) => {
     // };
     // const routeResults = useRoutes(routes);
 
+    const toggleModal = () => {
+        console.log()
+        setIsOpen(true);
+    }
+
+    const closeScreen = () => {
+        setIsOpen(false)
+    }
+
     const setTeams = (hTeam, aTeam) => {
-        // props.togalModal()
+        toggleModal()
         props.setHomeTeam(hTeam)
         props.setAwayTeam(aTeam)
+        props.setSingleGameData({
+            homeTeam: props.homeTeam,
+            awayTeam: props.awayTeam,
+            homeScore: props.homeScore,
+            awayScore: props.awayScore,
+            gameTime: props.gameTime
+        })
     }
 
     return (
-        <div className={classes.root} onClick={() => setTeams(props.homeTeam, props.awayTeam)}>
-            <Grid container>
+        <div className={classes.root} >
+            <Grid container onClick={() => setTeams(props.homeTeam, props.awayTeam)}>
                 <Grid item xs={5}>
                     <div className={classes.awayTeam}>
                         <img className={classes.logo}></img>
@@ -103,7 +121,7 @@ const NbaGameCard = (props) => {
                     <div className={classes.centerSpread}>
                         <div className={`${classes.vl} ${classes.topLine}`}></div>
                         <p>{props.gameTime}</p>
-                        <p>{props.timeRemaining}</p>
+                        <p>{ props.timeRemaining }</p>
                         <div className={`${classes.vl} ${classes.bottomLine}`}></div>
                     </div>
                 </Grid>
@@ -117,6 +135,7 @@ const NbaGameCard = (props) => {
                     </div>
                 </Grid>
             </Grid>
+            <PickColors toggleModal={toggleModal} isOpen={isOpen} closeScreen={closeScreen} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} awayTeam={props.awayTeam} homeTeam={props.homeTeam} setGameView={props.setGameView} />
         </div>
     );
 }

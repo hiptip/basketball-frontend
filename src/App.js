@@ -10,6 +10,7 @@ import { RGBtoXY, getGradientColor, hexToRgb } from './util/colorFunctions'
 import PickColors from './components/PickColors';
 import "./styles.css";
 import ChooseLights from './components/ChooseLights';
+import GamePage from './components/GamePage';
 
 const App = () => {
   const [homeColor, setHomeColor] = useState("#1271ff")
@@ -19,13 +20,15 @@ const App = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [hueConfigured, setHueConfigured] = useState(false)
   const [hueUsername, setHueUsername] = useState("rpFOVnRT3f3nX484o6arbY-HzrnjjObfsihT3n82")
+  const [bridgeIp, setBridgeIp] = useState()
   const [liveGames, setLiveGames] = useState([])
-  const [homeTeam, setHomeTeam] = useState("Brooklyn Nets")
+  const [homeTeam, setHomeTeam] = useState()
   const [awayTeam, setAwayTeam] = useState()
   const [timeStamp, setTimeStamp] = useState('')
   const [delay, setDelay] = useState(45000)
   const [checkedLights, setCheckedLights] = useState([])
   const [gameView, setGameView] = useState(false)
+  const [singleGameData, setSingleGameData] = useState({})
 
   const nbaTeams = [
     'ATLANTA HAWKS',
@@ -74,7 +77,7 @@ const App = () => {
     }))
       .then(response => response.json())
       .then(response => {
-        console.log(response)
+        console.log("ASDFsadf")
         setLiveGames(response)
       })
   }
@@ -99,27 +102,31 @@ const App = () => {
       }) //set color   
   }
 
+  const controlLights = (game) => {
+    console.log(game)
+    let colorXY = scoreToXY(parseInt(game.homeScore), parseInt(game.awayScore))
+    setColor(colorXY[0], colorXY[1], checkedLights)
+  }
+
   const scoreToXY = (hScore, vScore) => {
-    console.log("asdfasdfasdfasd")
     const neutralHex = "#FFC94A"
+    const home = "#1271ff"
+    const away = "#009e05"
     if (hScore === vScore) {
-      console.log("ASDFASDFSADF")
       return RGBtoXY(neutralColor[0], neutralColor[1], neutralColor[2])
     }
     if (hScore > vScore) {
       let diff = hScore - vScore
-      console.log("ASDFASDFASDF")
       let percent = diff / 15
-      let gradientColor = getGradientColor(neutralHex, homeColor, percent)
+      let gradientColor = getGradientColor(neutralHex, home, percent) //update this
       console.log(gradientColor)
       let rgb = hexToRgb(gradientColor)
       return RGBtoXY(rgb.r, rgb.g, rgb.b)
     }
     if (hScore < vScore) {
       let diff = vScore - hScore
-      console.log("ASDFASDFASDF")
       let percent = diff / 15
-      let gradientColor = getGradientColor(neutralHex, awayColor, percent)
+      let gradientColor = getGradientColor(neutralHex, away, percent) //update this
       let rgb = hexToRgb(gradientColor)
       return RGBtoXY(rgb.r, rgb.g, rgb.b)
     }
@@ -136,61 +143,53 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (homeTeam) {
-      connectHue()
-
+    if (gameView) {
+      console.log("controlling the lights")
+      if (singleGameData) {
+        controlLights(singleGameData, checkedLights)
+      }
     }
-  }, [homeTeam])
+  }, [liveGames])
 
-  const setColor = (x, y) => {
-    fetch(`https://192.168.1.219/api/dVMIVrgTp3H-EXQSGMk1R-30s2Oej4Fs3T-Wx0m9/lights/7/state`, { //get correct ip address
-      method: 'PUT',
-      body: JSON.stringify({ "xy": [x, y] })
-    })
+  useEffect(() => { //update this logic
+    connectHue()
+  }, [hueConfigured])
+
+  const setColor = (x, y, lights) => {
+    console.log(lights)
+    for (const light in lights) {
+      fetch(`https://${bridgeIp}/api/${hueUsername}/lights/${light}/state`, { //get correct ip address
+        method: 'PUT',
+        body: JSON.stringify({ "xy": [x, y] })
+      })
+    }
     // fetch(`https://192.168.86.30/api/${hueUsername}/lights/2/state`, {
     //   method: 'PUT',
     //   body: JSON.stringify({ "xy": [x, y] })
     // })
   }
 
-  const fetchLiveGames = () => {
-    fetch('/games/games')
-      .then(res => res.json())
-      .then(res => setLiveGames(res))
-  }
-
   const connectHue = () => {
-    // const delay = ms => new Promise(res => setTimeout(res, ms));
-    // const { hex: hHex } = getMainColor(hName);
-    // const { hex: vHex } = getMainColor(vName);
-    // await delay(1000)
-    // setHomeColor(hHex, )
-    // setVisitorColor(vHex)
-    // await delay(3000)
-    const intervalId = setInterval(() => {
-      // getAllGames()
-      getGameScore()
+    if (intervalId) {
+      clearInterval(intervalId)
+    }
+    var intId = setInterval(() => {
+      getAllGames()
     }, 6000)
-    setIntervalId(intervalId)
-  }
-
-  const clearInt = () => {
-    clearInterval(intervalId)
+    setIntervalId(intId)
   }
 
   return (
     <div>
-      {!hueConfigured && <ConnectHue setHueUsername={setHueUsername} setHueConfigured={setHueConfigured} hueUsername={hueUsername} setCheckedLights={setCheckedLights} />}
+      {!hueConfigured && <ConnectHue setHueUsername={setHueUsername} setHueConfigured={setHueConfigured} hueUsername={hueUsername} setCheckedLights={setCheckedLights} setBridgeIp={setBridgeIp} />}
       { (hueConfigured && !gameView) &&
         <div className="App">
-          <LiveGames liveGames={liveGames} setHomeTeam={setHomeTeam} setAwayTeam={setAwayTeam} />
+          <LiveGames liveGames={liveGames} setHomeTeam={setHomeTeam} setAwayTeam={setAwayTeam} setAwayColor={setAwayColor} setHomeColor={setHomeColor} awayTeam={awayTeam} homeTeam={homeTeam} setGameView={setGameView} setSingleGameData={setSingleGameData} />
           <PickColors setAwayColor={setAwayColor} setHomeColor={setHomeColor} awayTeam={awayTeam} homeTeam={homeTeam} setGameView={setGameView} />
         </div>
       }
       { (hueConfigured && gameView) &&
-        <div>
-          <h1>We watchsingk aegasg aeragaeme gasd</h1>
-        </div>
+        <GamePage homeTeam={homeTeam} awayTeam={awayTeam} homeColor={homeColor} awayColor={awayColor} liveGames={liveGames} />
       }
     </div>
   );
