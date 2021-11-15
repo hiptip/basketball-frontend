@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
 
 
     modalBox: {
@@ -10,6 +10,10 @@ const useStyles = makeStyles({
         left: '50%',
         width: '40%',
         height: '65%',
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+            height: '50%'
+          },
         borderRadius: 20,
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
@@ -47,7 +51,7 @@ const useStyles = makeStyles({
             backgroundColor: '#333131',
         },
     }
-})
+}));
 
 const ChooseLights = (props) => {
     const classes = useStyles();
@@ -452,7 +456,7 @@ const ChooseLights = (props) => {
         <div className={classes.modalBox}>
             <h2>Choose lights</h2>
             <ul className={classes.list}>
-                {props.lights && Object.entries(mockData).map(([key, value]) =>
+                {props.lights && Object.entries(props.lights).map(([key, value]) =>
                     <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} /> {value.name}</li>
                 )}
             </ul>

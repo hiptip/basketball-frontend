@@ -7,7 +7,7 @@ import Static from '../assets/splash-lockup.svg'
 import BridgeGif from '../assets/philips-loader.gif'
 import ChooseLights from './ChooseLights';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     "@keyframes gradient": {
         "0%": {
             backgroundPosition: '0% 50%'
@@ -84,13 +84,17 @@ const useStyles = makeStyles({
         left: '50%',
         width: '40%',
         height: '65%',
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+            height: '50%'
+          },
         borderRadius: 20,
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
         backgroundColor: "white"
     },
     loader: {
-        width: "25%",
+        height: "25%",
         paddingTop: "20%"
     },
     info: {
@@ -105,7 +109,7 @@ const useStyles = makeStyles({
             fontSize: '1.5rem',
         },
     }
-})
+}));
 
 const ConnectHue = (props) => {
     const classes = useStyles();

@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 import NbaGameCard from './NbaGameCard';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     '@keyframes testAnimation': {
         from: { opacity: 1 },
         to: { opacity: .2 },
@@ -21,11 +21,11 @@ const useStyles = makeStyles({
         animation: '$testAnimation 1.5s infinite alternate ease-in-out'
 
     },
-});
+}));
 
 const mockGameData = [
     {
-        homeTeam: "Dallas Mavericks",
+        homeTeam: "Mavericks",
         homeScore: "23",
         awayTeam: "Knicks",
         awayScore: "30",
@@ -53,6 +53,12 @@ const mockGameData = [
 const LiveGames = (props) => {
     const classes = useStyles();
 
+    // if (props.liveGames.length === 0) {    uncomment this out for no live games
+    //     return (
+    //         <h1>No Live Games</h1>
+    //     )
+    // }
+
     return (
         <Grid container spacing={3} align="center" justify="center" alignItems="center">
             <Grid item>
@@ -60,7 +66,7 @@ const LiveGames = (props) => {
                     LIVE
                 </h1>
             </Grid>
-            {props.liveGames.map(data => //change to props.liveGames
+            {mockGameData.map(data => //change to props.liveGames
                 <Grid item xs={12}>
                     <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} setGameView={props.setGameView} setSingleGameData={props.setSingleGameData} />
                 </Grid>
