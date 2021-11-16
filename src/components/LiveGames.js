@@ -4,9 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import NbaGameCard from './NbaGameCard';
 
 const useStyles = makeStyles((theme) => ({
-    '@keyframes testAnimation': {
+    '@keyframes pulse': {
         from: { opacity: 1 },
-        to: { opacity: .2 },
+        to: { opacity: .7 },
     },
 
     live: {
@@ -14,13 +14,23 @@ const useStyles = makeStyles((theme) => ({
         fontStyle: 'normal',
         fontWeight: 'bold',
         fontSize: 18,
-        borderStyle: 'solid',
-        borderRadius: 15,
-        padding: 3,
-        color: 'red',
-        animation: '$testAnimation 1.5s infinite alternate ease-in-out'
-
+        borderRadius: 25,
+        padding: 10,
+        color: 'white',
+        backgroundColor: 'red',
+        animation: '$pulse 1.5s infinite alternate ease-in-out',
+        marginTop:50
     },
+
+    heading: {
+        fontFamily: 'Roboto Mono',
+        fontStyle: 'normal',
+        fontWeight: 'bold',
+        fontSize: 24,
+        color:'black',
+        margin:0,
+        marginBottom:50
+    }
 }));
 
 const mockGameData = [
@@ -33,19 +43,43 @@ const mockGameData = [
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Knicks",
+        homeTeam: "Hornets",
         homeScore: "23",
-        awayTeam: "Knicks",
+        awayTeam: "Wizards",
         awayScore: "30",
         quarter: "1Q",
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Knicks",
+        homeTeam: "Kings",
         homeScore: "23",
-        awayTeam: "Knicks",
+        awayTeam: "Bulls",
         awayScore: "30",
-        quarter: "1Q",
+        quarter: "3Q",
+        timeRemaining: "2'"
+    },
+    {
+        homeTeam: "Rockets",
+        homeScore: "23",
+        awayTeam: "Spurs",
+        awayScore: "30",
+        quarter: "3Q",
+        timeRemaining: "2'"
+    },
+    {
+        homeTeam: "Nets",
+        homeScore: "23",
+        awayTeam: "Celtics",
+        awayScore: "30",
+        quarter: "3Q",
+        timeRemaining: "2'"
+    },
+    {
+        homeTeam: "Lakers",
+        homeScore: "23",
+        awayTeam: "Bulls",
+        awayScore: "30",
+        quarter: "3Q",
         timeRemaining: "2'"
     }
 ]
@@ -60,11 +94,14 @@ const LiveGames = (props) => {
     // }
 
     return (
-        <Grid container spacing={3} align="center" justify="center" alignItems="center">
+        <Grid container spacing={0} align="center" justify="center" alignItems="center">
             <Grid item>
                 <h1 className={classes.live}>
                     LIVE
                 </h1>
+            </Grid>
+            <Grid item xs={12}>
+                <h2 className={classes.heading}>Choose a live game</h2>
             </Grid>
             {mockGameData.map(data => //change to props.liveGames
                 <Grid item xs={12}>

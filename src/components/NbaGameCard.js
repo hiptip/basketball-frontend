@@ -13,52 +13,63 @@ import { nbaLogoMap } from '../util/logos'
 const useStyles = makeStyles((theme) => ({
     root: {
         // position: 'absolute',
-        width: 600,
-        height: 121,
+        width: 750,
         [theme.breakpoints.down('sm')]: {
-            width: '90%',
-            // height: '40%'
-          },
-        left: 398,
-        top: 231,
+            width: 'calc(95% - 24px)',
+        },
+        padding:25,
+        marginBottom:25,
         background: '#FFFFFF',
-        // opacity: 0.2,
         boxShadow: '1px 5px 10px 4px rgb(242, 245, 248)',
-        borderRadius: 12,
+        borderRadius: 5,
+        border: '1px solid white',
         fontFamily: 'Roboto Mono',
         fontStyle: 'normal',
         fontWeight: 'bold',
         '&:hover': {
             border: '1px solid grey'
         }
-        // display: 'inline-block'
     },
-    // awayTeam: {
-    //     display: 'inline-block'
-    // },
-    // homeTeam: {
-    //     display: 'inline-block'
-    // },
-    teamName: {
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    teamNameAway: {
         fontFamily: 'Roboto Mono',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
         fontSize: 16,
-        // lineHeight: 21,
-        // display: 'flex',
-        // alignItems: 'center'
+        margin:0,
+        marginLeft:10,
+        textAlign:'left'
     },
-    score: {
+    scoreAway: {
         fontFamily: 'Roboto Mono',
-        fontStyle: 'normal',
-        fontWeight: 'bold',
-        fontSize: 32,
+        fontSize: 52,
+        margin:0,
+        marginLeft:10,
+        textAlign:'left',
+        width:'100%'
+    },
+    teamNameHome: {
+        fontFamily: 'Roboto Mono',
+        fontSize: 16,
+        margin:0,
+        marginRight:10,
+        textAlign:'right'
+    },
+    scoreHome: {
+        fontFamily: 'Roboto Mono',
+        fontSize: 52,
+        margin:0,
+        marginRight:10,
+        textAlign:'right'
     },
     // centerSpread: {
     //     alignItems: 'center'
     // },
     stats: {
         display: 'inline-block',
+        width:'100%',
     },
     vl: {
         position: 'relative',
@@ -71,9 +82,24 @@ const useStyles = makeStyles((theme) => ({
         // backgroundRepeat: 'no-repeat',
         // backgroundSize: '150% 150%',
         // backgroundPosition: 'center',
-        borderRadius: '50%',
-        height: 60,
-        width: 60
+        height: 140,
+        width: 140,
+        marginLeft:'-20%',
+        marginTop:'-20%'
+    },
+    logoContainer: {
+        position:'relative',
+        overflow:'hidden',
+        width:100,
+        maxWidth: '100%',
+        height:100,
+        borderRadius: '100%',
+        border:'5px solid black',
+        backgroundColor:'black',
+        [theme.breakpoints.down('xs')]: {
+            width: 20,
+            height: 20
+        }
     }
 }));
 
@@ -82,7 +108,7 @@ const NbaGameCard = (props) => {
     const classes = useStyles();
     const [isOpen, setIsOpen] = useState(false);
 
-  
+
     // const routes = {
     //     '/': () => <Home />,
     //     '/teamOneColor': () => <SetColor />,
@@ -111,7 +137,7 @@ const NbaGameCard = (props) => {
             gameTime: props.gameTime
         })
     }
-    
+
     const getLogoUrl = (teamName) => {
         const team = nbaLogoMap.find(team => teamName.includes(team.mascot))
         return team.logoURL
@@ -119,32 +145,35 @@ const NbaGameCard = (props) => {
 
     return (
         <div className={classes.root} >
-            <Grid container onClick={() => setTeams(props.homeTeam, props.awayTeam)}>
-                <Grid item xs={5}>
-                    <div className={classes.awayTeam}>
-                        <img className={classes.logo} src={getLogoUrl(props.awayTeam)}></img>
-                        <div className={classes.stats}>
-                            <p className={classes.teamName}>{props.awayTeam}</p>
-                            <p className={classes.score}>{props.awayScore}</p>
+            <Grid container className={classes.center} onClick={() => setTeams(props.homeTeam, props.awayTeam)}>
+                <Grid item xs={2}>
+                        <div className={classes.logoContainer}>
+                            <img className={classes.logo} src={getLogoUrl(props.awayTeam)}></img>
                         </div>
-                    </div>
+                </Grid>
+                <Grid item xs={3}>
+                        <div className={classes.stats}>
+                            <p className={classes.teamNameAway}>{props.awayTeam}</p>
+                            <p className={classes.scoreAway}>{props.awayScore}</p>
+                        </div>
                 </Grid>
                 <Grid item xs={2}>
                     <div className={classes.centerSpread}>
-                        <div className={`${classes.vl} ${classes.topLine}`}></div>
                         <p>{props.gameTime}</p>
+                        <p>{props.quarter}</p>
                         <p>{ props.timeRemaining }</p>
-                        <div className={`${classes.vl} ${classes.bottomLine}`}></div>
                     </div>
                 </Grid>
-                <Grid item xs={5}>
-                    <div className={classes.homeTeam}>
+                <Grid item xs={3}>
                         <div className={classes.stats}>
-                            <p className={classes.teamName}>{props.homeTeam}</p>
-                            <p className={classes.score}>{props.homeScore}</p>
+                            <p className={classes.teamNameHome}>{props.homeTeam}</p>
+                            <p className={classes.scoreHome}>{props.homeScore}</p>
                         </div>
-                        <img className={classes.logo} src={getLogoUrl(props.homeTeam)}></img>
-                    </div>
+                </Grid>
+                <Grid item xs={2}>
+                        <div className={classes.logoContainer}>
+                            <img className={classes.logo} src={getLogoUrl(props.homeTeam)}></img>
+                        </div>
                 </Grid>
             </Grid>
             <PickColors toggleModal={toggleModal} isOpen={isOpen} closeScreen={closeScreen} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} awayTeam={props.awayTeam} homeTeam={props.homeTeam} setGameView={props.setGameView} />
