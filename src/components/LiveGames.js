@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
     liveGameHeading: {
         textAlign: 'center',
         fontFamily: 'Roboto Mono',
-        margin:'20px 0 30px 0'
+        margin:'20px 0 30px 0',
+        textTransform:'uppercase'
     },
 
     heading: {

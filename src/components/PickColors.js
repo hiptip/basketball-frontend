@@ -36,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     modalHeader: {
         textAlign: 'center',
         fontFamily: 'Roboto Mono',
-        margin:'20px 0 30px 0'
+        margin:'20px 0 30px 0',
+        textTransform:'uppercase'
     },
     logo: {
         height: 200,
@@ -80,7 +81,8 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 100,
         background: 'black',
         color: 'white',
-        // flex: 1
+        fontSize:'1em',
+        fontWeight:'bold'
     },
     prevButton: {
         padding:'15px 30px',
@@ -93,7 +95,8 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 100,
         background: 'white',
         color: 'black',
-        // flex: 1
+        fontSize:'1em',
+        fontWeight:'bold'
     }
 }));
 

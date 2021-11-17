@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import Icons from "@material-ui/icons";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -12,13 +13,13 @@ import { nbaLogoMap } from '../util/logos'
 const useStyles = makeStyles((theme) => ({
     "@keyframes shadowPulse": {
         "0%": {
-            boxShadow:'inset 0px 0px 150px rgba(255,255,255,.5)'
+            boxShadow:'0px 0px 50px rgba(255,255,255,1)'
         },
         "50%": {
-            boxShadow:'inset 0px 0px 150px rgba(255,255,255,.1)'
+            boxShadow:'0px 0px 30px rgba(255,255,255,.2)'
         },
         "100%": {
-            boxShadow:'inset 0px 0px 150px rgba(255,255,255,.5)'
+            boxShadow:'0px 0px 50px rgba(255,255,255,1)'
         }
     },
     wrapper: {
@@ -32,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         fontFamily: 'Roboto Mono',
         background:'#F58426',
-        // animation: '$shadowPulse 5s linear infinite',
     },
     goBack: {
         cursor: 'pointer',
         fontSize: '3vh',
         padding:50,
-        color:'white'
+        color:'white',
+        textTransform:'uppercase'
     },
     gameData: {
         // border: '1px solid black',
@@ -76,7 +77,8 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: '100%',
         margin:'0 auto',
         borderRadius: '100%',
-        border:'10px solid black',
+        animation: '$shadowPulse 5s linear infinite',
+        // border:'10px solid black',
         backgroundColor:'#f2f2f2',
         [theme.breakpoints.down('md')]: {
             width: 150,
@@ -170,7 +172,17 @@ const useStyles = makeStyles((theme) => ({
         textAlign:'center',
     },
     calibrate: {
-        display: 'block'
+        display: 'block',
+        backgroundColor:'black',
+        color:'white',
+        padding:'20px 30px',
+        border:'none',
+        fontFamily:'Roboto Mono',
+        fontSize:'1em',
+        fontWeight:'bold',
+        margin:'40px auto',
+        borderRadius:'50px',
+        cursor:'pointer'
     },
     changeColor: {
         margin:'0 auto',
@@ -178,9 +190,9 @@ const useStyles = makeStyles((theme) => ({
         lineHeight:'1em',
         display:'inline-flex',
         alignItems:'center',
-        color:'white',
+        color:'black',
         textTransform:'uppercase',
-        background:'black',
+        background:'white',
         padding:'10px 15px',
         borderRadius:'100px',
         '&:hover': {
@@ -247,7 +259,7 @@ const GamePage = (props) => {
 
     return (
         <div className={classes.wrapper}>
-            <h1 className={classes.goBack} onClick={toggleGameView}>{'<- See all games'}</h1>
+            <h1 className={classes.goBack} onClick={toggleGameView}>🡐 See all games</h1>
 
             <Grid container className={classes.gameInfo}>
                 <Grid item xs={3} className={classes.logoItems}>

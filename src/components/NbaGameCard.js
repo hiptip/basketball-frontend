@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             width: 'calc(95% - 24px)',
         },
-        padding:'20px 15px',
+        padding:'30px 20px',
         marginBottom:20,
         boxShadow: '1px 5px 10px 4px rgb(242, 245, 248)',
         borderRadius: 15,
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
     scoreHome: {
         fontFamily: 'Roboto Mono',
-        fontSize: 52,
+        fontSize: 50,
         margin:0,
         marginRight:10,
         textAlign:'right'
