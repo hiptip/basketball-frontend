@@ -1,38 +1,56 @@
 import React, { useState, useContext } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-
+const useStyles = makeStyles({
+    "@keyframes lightGlow": {
+        "0%": {
+            boxShadow:'0 0 10px rgba(255,255,255,.2)',
+        },
+        "50%": {
+            boxShadow:'0 0 500px rgba(255,255,255,1)',
+        },
+        "100%": {
+            boxShadow:'0 0 10px rgba(255,255,255,.2)',
+        }
+    },
 
     modalBox: {
         position: 'fixed',
         top: '50%',
         left: '50%',
-        width: '40%',
-        height: '65%',
-        [theme.breakpoints.down('sm')]: {
-            width: '80%',
-            height: '50%'
-          },
-        borderRadius: 20,
+        width:'400px',
+        padding:'50px',
+        borderRadius: 5,
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
+        // boxShadow:'0 0 100px rgba(255,255,255,1)',
         backgroundColor: "white",
-        // padding: 50
+        animation: '$lightGlow 20s ease infinite',
+        '@media (max-width:600px)': {
+            width: '100vw',
+            height:'100vh',
+            paddingTop:200
+        },
+    },
+    h2: {
+        padding:0,
+        margin:0,
+        fontSize:'32px',
+        textTransform:'uppercase'
     },
     list: {
         textAlign: "left",
-        width: "40%",
+        width: "100%",
         margin: "auto",
+        padding: '30px 20px',
         listStyleType: "none",
     },
     listItem: {
-        padding: 5
+        padding: '5px 0px 5px 0px'
     },
     button: {
-        position: 'absolute',
-        backgroundColor: 'black',
-        border: 'none',
+        backgroundColor: 'rgba(0,0,0,1)',
+        border: '2px solid rgba(255,255,255,1)',
         color: 'white',
         padding: '15px 32px',
         textAlign: 'center',
@@ -44,14 +62,16 @@ const useStyles = makeStyles((theme) => ({
         left: 0,
         right: 0,
         margin: 'auto',
-        bottom: 50,
         fontFamily: 'Roboto Mono',
         fontWeight: 700,
         '&:hover': {
-            backgroundColor: '#333131',
+            backgroundColor: 'rgba(0,0,0,.8)',
+            border: '2px solid rgba(255,255,255,1)',
+            transition: 'background-color .1s ease-out, border .1s ease-out',
+            cursor:'pointer'
         },
     }
-}));
+})
 
 const ChooseLights = (props) => {
     const classes = useStyles();
@@ -454,9 +474,9 @@ const ChooseLights = (props) => {
 
     return (
         <div className={classes.modalBox}>
-            <h2>Choose lights</h2>
-            <ul className={classes.list}>
-                {props.lights && Object.entries(props.lights).map(([key, value]) =>
+            <h2 className={classes.h2}>Choose lights</h2>
+        <ul className={classes.list}>
+                {props.lights && Object.entries(mockData).map(([key, value]) =>
                     <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} /> {value.name}</li>
                 )}
             </ul>
