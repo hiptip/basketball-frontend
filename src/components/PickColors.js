@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
         textTransform:'uppercase'
     },
     logo: {
-        height: 200,
-        width: 200,
-        marginLeft:'-50%',
-        marginTop:'-50%',
+        height: 100,
+        width: 100,
+        // marginLeft:'-50%',
+        // marginTop:'-50%',
     },
     logoContainerColorPicker: {
         position:'relative',
@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme) => ({
         height:100,
         margin:'auto',
         borderRadius: '100%',
-        border:'5px solid black',
-        backgroundColor:'#eee',
+        // border:'5px solid black',
+        // backgroundColor:'#eee',
     },
     colorPicker: {
         display: 'block',

@@ -4,28 +4,69 @@ import Grid from '@material-ui/core/Grid';
 import NbaGameCard from './NbaGameCard';
 
 const useStyles = makeStyles((theme) => ({
+    '@keyframes livePulse': {
+        from: {
+            background:'#ff0000',
+        },
+        to: {
+            background:'#cc0000',
+        },
+    },
+    "@keyframes gradient": {
+        "0%": {
+            backgroundPosition: '0% 50%'
+        },
+        "50%": {
+            backgroundPosition: '100% 50%'
+        },
+        "100%": {
+            backgroundPosition: '0% 50%'
+        }
+    },
     '@keyframes pulse': {
         from: { opacity: 1 },
         to: { opacity: .7 },
     },
-
-    live: {
+    background: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        overflow: 'auto',
+        backgroundImage: `linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)`,
+        backgroundPosition: 'center, center',
+        backgroundSize: '400% 400%',
+        backgroundRepeat: 'no-repeat, no-repeat',
+        animation: '$gradient 15s ease infinite',
+        fontFamily: 'Roboto Mono'
+    },
+    h2: {
+        padding:0,
+        margin:'0 0 20px 0',
         fontFamily: 'Roboto Mono',
-        fontStyle: 'normal',
+        color:'white',
+        fontSize:'32px',
+        textTransform:'uppercase'
+    },
+    live: {
+        marginTop:50,
+        fontFamily: 'Roboto Mono',
         fontWeight: 'bold',
-        fontSize: 18,
-        borderRadius: 25,
-        padding: 10,
+        fontSize: '1em',
+        display:'inline-flex',
+        letterSpacing: 2,
+        borderRadius:50,
+        padding: '10px 15px',
         color: 'white',
-        backgroundColor: 'red',
-        animation: '$pulse 1.5s infinite alternate ease-in-out',
-        marginTop:50
+        animation: '$livePulse 1.5s infinite alternate linear',
     },
     liveGameHeading: {
         textAlign: 'center',
         fontFamily: 'Roboto Mono',
         margin:'20px 0 30px 0',
-        textTransform:'uppercase'
+        textTransform:'uppercase',
+        color:'white'
     },
 
     heading: {
@@ -51,21 +92,21 @@ const mockGameData = [
     {
         homeTeam: "Hornets",
         homeScore: "23",
-        awayTeam: "Wizards",
+        awayTeam: "Timberwolves",
         awayScore: "30",
         quarter: "1Q",
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Kings",
+        homeTeam: "Suns",
         homeScore: "23",
-        awayTeam: "Bulls",
+        awayTeam: "76ers",
         awayScore: "30",
         quarter: "3Q",
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Rockets",
+        homeTeam: "Thunder",
         homeScore: "23",
         awayTeam: "Spurs",
         awayScore: "30",
@@ -100,7 +141,7 @@ const LiveGames = (props) => {
     // }
 
     return (
-        <Grid container spacing={0} align="center" justify="center" alignItems="center">
+        <Grid container className={classes.background} spacing={0} align="center" justify="center" alignItems="center">
             <Grid item>
                 <h2 className={classes.live}>
                     LIVE

@@ -11,15 +11,23 @@ import PickColors from './PickColors';
 import { nbaLogoMap } from '../util/logos'
 
 const useStyles = makeStyles((theme) => ({
+    '@keyframes livePulse': {
+        from: {
+            background:'#ff0000',
+        },
+        to: {
+            background:'#cc0000',
+        },
+    },
     "@keyframes shadowPulse": {
         "0%": {
-            boxShadow:'0px 0px 50px rgba(255,255,255,1)'
+            boxShadow:'0px 0px 50px rgba(255,255,255,1), inset 0px 0px 20px rgba(0,0,0,.2)'
         },
         "50%": {
-            boxShadow:'0px 0px 30px rgba(255,255,255,.2)'
+            boxShadow:'0px 0px 50px rgba(255,255,255,.5), inset 0px 0px 20px rgba(0,0,0,.5)'
         },
         "100%": {
-            boxShadow:'0px 0px 50px rgba(255,255,255,1)'
+            boxShadow:'0px 0px 50px rgba(255,255,255,1), inset 0px 0px 20px rgba(0,0,0,.2)'
         }
     },
     wrapper: {
@@ -32,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         position: 'relative',
         fontFamily: 'Roboto Mono',
-        background:'#F58426',
+        background:'#007A33',
     },
     goBack: {
         cursor: 'pointer',
@@ -41,29 +49,22 @@ const useStyles = makeStyles((theme) => ({
         color:'white',
         textTransform:'uppercase'
     },
-    gameData: {
-        // border: '1px solid black',
-        width: '70%',
-        margin: 'auto',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        display: 'flex'
-    },
-    awayTeamData: {
-        display: 'flex',
-        flex: 1
-    },
-    homeTeamData: {
-        display: 'flex',
-        flex: 1,
-        justifyContent: 'flex-end'
-    },
-    gameTime: {
-        display: 'flex',
-        flex: 1,
-        justifyContent: 'center'
+    live: {
+        fontFamily: 'Roboto Mono',
+        fontWeight: 'bold',
+        fontSize: '1em',
+        display:'inline-flex',
+        letterSpacing: 2,
+        borderRadius:50,
+        padding: '10px 15px',
+        color: 'white',
+        animation: '$livePulse 1.5s infinite alternate linear',
+        [theme.breakpoints.down('xs')]: {
+            color:'transparent',
+            width:20,
+            height:20,
+            padding:0
+        }
     },
     logoItems: {
         justifyContent:'center',
@@ -72,31 +73,30 @@ const useStyles = makeStyles((theme) => ({
     logoContainer: {
         position:'relative',
         overflow:'hidden',
-        width: 250,
-        height: 250,
+        width: 300,
+        height: 300,
         maxHeight: '100%',
         margin:'0 auto',
         borderRadius: '100%',
         animation: '$shadowPulse 5s linear infinite',
-        // border:'10px solid black',
-        backgroundColor:'#f2f2f2',
+        // border:'3px solid white',
+        backgroundColor:'rgba(255,255,255,.1)',
         [theme.breakpoints.down('md')]: {
             width: 150,
             height: 150,
-            border:'8px solid black',
         },
         [theme.breakpoints.down('sm')]: {
             width: 100,
             height: 100,
-            border:'5px solid black',
         },
         [theme.breakpoints.down('xs')]: {
+            border:'2px solid white',
             width: 20,
             height: 20,
         }
     },
     logo: {
-        width:500,
+        width:600,
         height:'auto',
         marginLeft:'-50%',
         marginTop:'-50%',
@@ -155,7 +155,10 @@ const useStyles = makeStyles((theme) => ({
         margin: '10px 0',
         textAlign:'center',
         lineHeight:'1em',
-        margin:0
+        margin:0,
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '15vw',
+        }
     },
     homeTeamScore: {
         fontSize: '10vw',
@@ -163,13 +166,23 @@ const useStyles = makeStyles((theme) => ({
         margin: '10px 0',
         textAlign:'center',
         lineHeight:'1em',
-        margin:0
+        margin:0,
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '15vw',
+        }
+    },
+    timeItems: {
+        justifyContent:'center',
+        textAlign:'center'
     },
     gameTime: {
-        fontSize: '2.5vw',
+        fontSize: '1.7em',
         lineHeight:'1.2em',
         color:'white',
         textAlign:'center',
+        [theme.breakpoints.down('xs')]: {
+            fontSize:'1em'
+        }
     },
     calibrate: {
         display: 'block',
@@ -188,6 +201,8 @@ const useStyles = makeStyles((theme) => ({
         margin:'0 auto',
         marginTop:'20px',
         lineHeight:'1em',
+        fontWeight:'bold',
+        fontSize:'1em',
         display:'inline-flex',
         alignItems:'center',
         color:'black',
@@ -237,14 +252,6 @@ const GamePage = (props) => {
             quarter: "1Q",
             timeRemaining: "2'",
             gameTime: "1st Quarter 6 "
-        },
-        {
-            homeTeam: "Knicks",
-            homeScore: "23",
-            awayTeam: "Knicks",
-            awayScore: "30",
-            quarter: "1Q",
-            timeRemaining: "2'"
         }
     ]
 
@@ -262,29 +269,31 @@ const GamePage = (props) => {
             <h1 className={classes.goBack} onClick={toggleGameView}>🡐 See all games</h1>
 
             <Grid container className={classes.gameInfo}>
-                <Grid item xs={3} className={classes.logoItems}>
+                <Grid item xs={1} sm={3} className={classes.logoItems}>
                     <div className={classes.logoContainer}>
                         <img className={classes.logo} src={getLogoUrl(props.awayTeam)} alt='team logo'></img>
                     </div>
                     <div className={classes.changeColor}><div class={classes.awayColor}></div>Change Color</div>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
                         <p className={classes.awayTeamName}>{props.awayTeam}</p>
                         <p className={classes.awayTeamScore}>{game ? game.awayScore : ""}</p>
                     </div>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={2} className={classes.timeItems}>
                     {/* <p>{game.quarter}</p> */}
-                    <p className={classes.gameTime}>{game ? game.gameTime : ""}</p>
+                    <div className={classes.live}>
+                        LIVE
+                    </div>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
                         <p className={classes.homeTeamName}>{props.homeTeam}</p>
                         <p className={classes.homeTeamScore}>{game ? game.homeScore : ""}</p>
                     </div>
                 </Grid>
-                <Grid item xs={3} className={classes.logoItems}>
+                <Grid item xs={1} sm={3} className={classes.logoItems}>
                     <div className={classes.logoContainer}>
                         <img className={classes.logo} src={getLogoUrl(props.homeTeam)} alt='team logo'></img>
                     </div>

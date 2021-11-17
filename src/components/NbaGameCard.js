@@ -19,15 +19,21 @@ const useStyles = makeStyles((theme) => ({
         },
         padding:'30px 20px',
         marginBottom:20,
-        boxShadow: '1px 5px 10px 4px rgb(242, 245, 248)',
+        boxShadow: '0px 0px 0px rgba(255, 255, 255, 1)',
         borderRadius: 15,
-        border: '3px solid white',
+        backgroundColor: 'rgba(255,255,255,.1)',
+        border: '2px solid rgba(255,255,255,0)',
         fontFamily: 'Roboto Mono',
         fontStyle: 'normal',
         fontWeight: 'bold',
-        '&:hover': {
-            border: '3px solid black',
-            cursor:'pointer'
+        cursor:'pointer',
+        [theme.breakpoints.up('sm')]: {
+            '&:hover': {
+                border: '2px solid rgba(255,255,255,1)',
+                boxShadow: '0px 0px 20px rgba(255, 255, 255, .6), inset 0px 0px 20px rgba(255, 255, 255, .4)',
+                transform:'scale(1.01)',
+                transition:'all .2s ease-out'
+            }
         }
     },
     center: {
@@ -38,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     teamNameAway: {
         fontFamily: 'Roboto Mono',
         fontSize: 16,
+        color:'white',
         textTransform:'uppercase',
         margin:0,
         marginLeft:10,
@@ -47,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto Mono',
         fontSize: 52,
         margin:0,
+        color:'white',
         marginLeft:10,
         textAlign:'left',
         width:'100%'
@@ -55,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto Mono',
         textTransform:'uppercase',
         fontSize: 16,
+        color:'white',
         margin:0,
         marginRight:10,
         textAlign:'right'
@@ -62,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
     scoreHome: {
         fontFamily: 'Roboto Mono',
         fontSize: 50,
+        color:'white',
         margin:0,
         marginRight:10,
         textAlign:'right'
@@ -69,9 +79,10 @@ const useStyles = makeStyles((theme) => ({
     centerSpread: {
         alignItems: 'center',
         fontSize: 20,
-        borderLeft: '1px solid #ccc',
-        borderRight: '1px solid #ccc',
+        borderLeft: '2px solid rgba(255,255,255,.5)',
+        borderRight: '2px solid rgba(255,255,255,.5)',
         padding:'10px 0',
+        color:'white',
         width:'100%',
     },
     quarter: {
@@ -107,8 +118,8 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: '100%',
         height:100,
         borderRadius: '100%',
-        border:'5px solid black',
-        backgroundColor:'#f2f2f2',
+        // border:'5px solid black',
+        backgroundColor:'rgba(255,255,255,.2)',
         [theme.breakpoints.down('xs')]: {
             width: 20,
             height: 20
