@@ -5,14 +5,16 @@ import { nbaLogoMap } from '../util/logos'
 const useStyles = makeStyles((theme) => ({
     wrapper: {
         // border: '1px solid black',
-        width: '80vw',
-        height: '80vh',
+        width: '100vw',
+        height: '101vh',
         display: 'block',
         margin: 'auto',
-        marginTop: 80,
+        marginTop: -22,
         justifyContent: 'center',
         position: 'relative',
         fontFamily: 'Roboto Mono',
+        background:'red',
+        boxShadow:'inset 0px 0px 100px rgba(0,0,0,.20)'
     },
     header: {
         cursor: 'pointer',
@@ -43,20 +45,14 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     },
     logo: {
-        display: 'inline-block',
-        borderRadius: '50%',
-        // height: '10%',
-        width: '50%',
-        margin: 'auto 0'
+        width:200,
+        height:200
     },
     nameScore: {
-        display: 'inline-block'
     },
     awayTeamName: {
-        textAlign: 'start'
     },
     homeTeamName: {
-        textAlign: 'end'
     },
     awayTeamScore: {
         fontSize: '6vw',
@@ -92,14 +88,6 @@ const GamePage = (props) => {
             quarter: "1Q",
             timeRemaining: "2'",
             gameTime: "1st Quarter 6 "
-        },
-        {
-            homeTeam: "Knicks",
-            homeScore: "23",
-            awayTeam: "Knicks",
-            awayScore: "30",
-            quarter: "1Q",
-            timeRemaining: "2'"
         },
         {
             homeTeam: "Knicks",

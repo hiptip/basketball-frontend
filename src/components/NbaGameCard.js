@@ -17,17 +17,17 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             width: 'calc(95% - 24px)',
         },
-        padding:25,
-        marginBottom:25,
-        background: '#FFFFFF',
+        padding:'20px 15px',
+        marginBottom:20,
         boxShadow: '1px 5px 10px 4px rgb(242, 245, 248)',
-        borderRadius: 5,
-        border: '1px solid white',
+        borderRadius: 15,
+        border: '3px solid white',
         fontFamily: 'Roboto Mono',
         fontStyle: 'normal',
         fontWeight: 'bold',
         '&:hover': {
-            border: '1px solid grey'
+            border: '3px solid black',
+            cursor:'pointer'
         }
     },
     center: {
@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     teamNameAway: {
         fontFamily: 'Roboto Mono',
         fontSize: 16,
+        textTransform:'uppercase',
         margin:0,
         marginLeft:10,
         textAlign:'left'
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     teamNameHome: {
         fontFamily: 'Roboto Mono',
+        textTransform:'uppercase',
         fontSize: 16,
         margin:0,
         marginRight:10,
@@ -64,9 +66,21 @@ const useStyles = makeStyles((theme) => ({
         marginRight:10,
         textAlign:'right'
     },
-    // centerSpread: {
-    //     alignItems: 'center'
-    // },
+    centerSpread: {
+        alignItems: 'center',
+        fontSize: 20,
+        borderLeft: '1px solid #ccc',
+        borderRight: '1px solid #ccc',
+        padding:'10px 0',
+        width:'100%',
+    },
+    quarter: {
+        margin:0,
+    },
+    timeRemaining: {
+        margin:0,
+        marginTop:10
+    },
     stats: {
         display: 'inline-block',
         width:'100%',
@@ -78,14 +92,13 @@ const useStyles = makeStyles((theme) => ({
         left: '50%'
     },
     logo: {
-        // background: 'url("https://dl.dropbox.com/s/xghc9v5bvlu9d1s/bucks.png")',
-        // backgroundRepeat: 'no-repeat',
-        // backgroundSize: '150% 150%',
-        // backgroundPosition: 'center',
-        height: 140,
-        width: 140,
-        marginLeft:'-20%',
-        marginTop:'-20%'
+        height: 200,
+        width: 200,
+        marginLeft:'-50%',
+        marginTop:'-50%',
+        [theme.breakpoints.down('xs')]: {
+            display:'none'
+        }
     },
     logoContainer: {
         position:'relative',
@@ -95,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
         height:100,
         borderRadius: '100%',
         border:'5px solid black',
-        backgroundColor:'black',
+        backgroundColor:'#f2f2f2',
         [theme.breakpoints.down('xs')]: {
             width: 20,
             height: 20
@@ -159,9 +172,8 @@ const NbaGameCard = (props) => {
                 </Grid>
                 <Grid item xs={2}>
                     <div className={classes.centerSpread}>
-                        <p>{props.gameTime}</p>
-                        <p>{props.quarter}</p>
-                        <p>{ props.timeRemaining }</p>
+                        <p className={classes.quarter}>{props.quarter}</p>
+                        <p className={classes.timeRemaining}>{ props.timeRemaining }</p>
                     </div>
                 </Grid>
                 <Grid item xs={3}>

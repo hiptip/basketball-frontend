@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
         animation: '$pulse 1.5s infinite alternate ease-in-out',
         marginTop:50
     },
+    liveGameHeading: {
+        textAlign: 'center',
+        fontFamily: 'Roboto Mono',
+        margin:'20px 0 30px 0'
+    },
 
     heading: {
         fontFamily: 'Roboto Mono',
@@ -75,9 +80,9 @@ const mockGameData = [
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Lakers",
+        homeTeam: "Trail Blazers",
         homeScore: "23",
-        awayTeam: "Bulls",
+        awayTeam: "Hawks",
         awayScore: "30",
         quarter: "3Q",
         timeRemaining: "2'"
@@ -96,12 +101,12 @@ const LiveGames = (props) => {
     return (
         <Grid container spacing={0} align="center" justify="center" alignItems="center">
             <Grid item>
-                <h1 className={classes.live}>
+                <h2 className={classes.live}>
                     LIVE
-                </h1>
+                </h2>
             </Grid>
             <Grid item xs={12}>
-                <h2 className={classes.heading}>Choose a live game</h2>
+                <h1 className={classes.liveGameHeading}>Choose a live game</h1>
             </Grid>
             {mockGameData.map(data => //change to props.liveGames
                 <Grid item xs={12}>

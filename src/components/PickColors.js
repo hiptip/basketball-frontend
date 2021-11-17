@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'auto',
         borderRadius: 10,
         outline: 'none',
-        padding: 20,
-        height: '70%',
+        padding: '40px 0',
         width: '40%',
+        minWidth:'500px',
         [theme.breakpoints.down('sm')]: {
-            width: '70%',
-            height: '80%'
-          },
+            width: '100%',
+            height: '100%'
+        }
     },
     myoverlay: {
         position: 'fixed',
@@ -35,55 +35,64 @@ const useStyles = makeStyles((theme) => ({
     },
     modalHeader: {
         textAlign: 'center',
-        padding: 10,
-        fontFamily: 'Roboto Mono'
+        fontFamily: 'Roboto Mono',
+        margin:'20px 0 30px 0'
     },
     logo: {
-        borderRadius: '50%',
-        // borderStyle: 'solid',
-        // borderWidth: '1',
-        // borderColor: 'black',
-        height: 100,
-        width: 100,
-        display: 'block',
-        margin: 'auto',
-        padding: 15
+        height: 200,
+        width: 200,
+        marginLeft:'-50%',
+        marginTop:'-50%',
+    },
+    logoContainerColorPicker: {
+        position:'relative',
+        overflow:'hidden',
+        width:100,
+        maxWidth: '100%',
+        height:100,
+        margin:'auto',
+        borderRadius: '100%',
+        border:'5px solid black',
+        backgroundColor:'#eee',
     },
     colorPicker: {
         display: 'block',
         margin: 'auto',
-        width: 500
-        
+        minWidth: 300,
+        height: 'auto'
+
     },
     modalFooter: {
         display: 'flex',
-        margin: 60,
+        margin:'40px 0 0px',
         justifyContent: 'center',
         fontFamily: 'Roboto Mono',
         fontWeight: 700
     },
     nextButton: {
-        width: 220,
-        height: 45,
+        padding:'15px 30px',
+        cursor:'pointer',
+        fontFamily:'Roboto Mono',
+        margin:5,
         borderStyle: 'solid',
         borderWidth: '1',
         borderColor: 'black',
         borderRadius: 100,
         background: 'black',
         color: 'white',
-        margin: 10
         // flex: 1
     },
     prevButton: {
-        width: 220,
-        height: 45,
+        padding:'15px 30px',
+        cursor:'pointer',
+        fontFamily:'Roboto Mono',
+        margin:5,
         borderStyle: 'solid',
         borderWidth: '1',
         borderColor: 'black',
         borderRadius: 100,
         background: 'white',
         color: 'black',
-        margin: 10
         // flex: 1
     }
 }));
@@ -119,7 +128,7 @@ const PickColors = React.memo((props) => {
         setTeam(team + 1)
         setLogo(props.homeLogo)
         setName(props.homeName)
-        
+
     }
 
     const prevScreen = () => {
@@ -149,12 +158,14 @@ const PickColors = React.memo((props) => {
                 closeTimeoutMS={300}
                 shouldCloseOnOverlayClick={true}
             >
-                <div> 
+                <div>
+                    <div class={classes.logoContainerColorPicker}>
                     <img className={classes.logo} src={getLogoUrl(team)}></img>
-                    {/* <h1 className={classes.modalHeader}>Choose Team {team} Color</h1> */}
+                    </div>
+                    <h1 className={classes.modalHeader}>Choose {props.awayTeam} Color</h1>
                     <ChromePicker
                         color={teamColor}
-                        onChangeComplete={handleChangeComplete} 
+                        onChangeComplete={handleChangeComplete}
                         className={classes.colorPicker}
                     />
                     <footer className={classes.modalFooter}>
