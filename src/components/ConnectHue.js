@@ -19,6 +19,17 @@ const useStyles = makeStyles((theme) => ({
             backgroundPosition: '0% 50%'
         }
     },
+    "@keyframes lightGlow": {
+        "0%": {
+            boxShadow:'0 0 10px rgba(255,255,255,.2)',
+        },
+        "50%": {
+            boxShadow:'0 0 500px rgba(255,255,255,1)',
+        },
+        "100%": {
+            boxShadow:'0 0 10px rgba(255,255,255,.2)',
+        }
+    },
     background: {
         position: 'fixed',
         top: 0,
@@ -82,20 +93,28 @@ const useStyles = makeStyles((theme) => ({
         position: 'fixed',
         top: '50%',
         left: '50%',
-        width: '40%',
-        height: '65%',
-        [theme.breakpoints.down('sm')]: {
-            width: '80%',
-            height: '50%'
-          },
+        width:'400px',
+        padding:'50px',
         borderRadius: 20,
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
-        backgroundColor: "white"
+        backgroundColor: "white",
+        animation: '$lightGlow 20s ease infinite',
+        '@media (max-width:600px)': {
+            width: '100vw',
+            height:'100vh',
+            paddingTop:200
+        },
     },
     loader: {
-        height: "25%",
-        paddingTop: "20%"
+        maxWidth: "150px",
+    },
+    heading: {
+        textTransform:'uppercase',
+        margin:'30px 0 0 0',
+        '@media (max-width:600px)': {
+            fontSize:'1.1em'
+        },
     },
     info: {
         position: "absolute",
@@ -147,7 +166,7 @@ const ConnectHue = (props) => {
         fetch(`https://${ip}/api/${props.hueUsername}/lights`)
             .then(res => res.json())
             .then(res => setLights(res))
-        
+
     }
 
     const checkSuccess = (res, ip) => {
@@ -166,7 +185,7 @@ const ConnectHue = (props) => {
             <div className={classes.lines}></div>
             {}
             {(!waiting && !hueConnected) &&
-                <div>
+                <div className={classes.mymodal}>
                     <div className={classes.center}>
                         <img className={classes.staticImage} src={Static} alt="" />
                         <button className={classes.button} onClick={getBridgeApi}>Start Pairing</button>
@@ -175,9 +194,11 @@ const ConnectHue = (props) => {
                 </div>
             }
             {(waiting && !hueConnected) &&
-                <div className={classes.modalBox}>
+                <div class={classes.modalBox}>
+                    <div>
                     <img className={classes.loader} src={BridgeGif} alt="" />
-                    <p className={classes.info}>Click the button on your hub to pair</p>
+                    </div>
+                    <h1 className={classes.heading}>Click the button on your hub to pair</h1>
                 </div>
             }
             {hueConnected &&

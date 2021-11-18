@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         padding:'30px 20px',
         marginBottom:20,
         boxShadow: '0px 0px 0px rgba(255, 255, 255, 1)',
-        borderRadius: 15,
+        borderRadius: 20,
         backgroundColor: 'rgba(255,255,255,.1)',
         border: '2px solid rgba(255,255,255,0)',
         fontFamily: 'Roboto Mono',
@@ -79,11 +79,13 @@ const useStyles = makeStyles((theme) => ({
     centerSpread: {
         alignItems: 'center',
         fontSize: 20,
-        borderLeft: '2px solid rgba(255,255,255,.5)',
-        borderRight: '2px solid rgba(255,255,255,.5)',
-        padding:'10px 0',
+        padding:20,
         color:'white',
-        width:'100%',
+        // borderRadius:20,
+        // background:'rgba(255,255,255,.1)',
+        borderRight:'1px solid white',
+        borderLeft:'1px solid white',
+        display:'block'
     },
     quarter: {
         margin:0,

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
             background:'#ff0000',
         },
         to: {
-            background:'#cc0000',
+            background:'#ff0066',
         },
     },
     "@keyframes gradient": {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 0,
         overflow: 'auto',
+        alignContent:'flex-start',
         backgroundImage: `linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)`,
         backgroundPosition: 'center, center',
         backgroundSize: '400% 400%',
@@ -54,12 +55,13 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto Mono',
         fontWeight: 'bold',
         fontSize: '1em',
-        display:'inline-flex',
         letterSpacing: 2,
         borderRadius:50,
         padding: '10px 15px',
+        border:'2px solid white',
         color: 'white',
         animation: '$livePulse 1.5s infinite alternate linear',
+        boxShadow:'0px 0px 20px rgba(255,255,255,1)'
     },
     liveGameHeading: {
         textAlign: 'center',
@@ -83,50 +85,26 @@ const useStyles = makeStyles((theme) => ({
 const mockGameData = [
     {
         homeTeam: "Mavericks",
-        homeScore: "23",
+        homeScore: "88",
         awayTeam: "Knicks",
-        awayScore: "30",
-        quarter: "1Q",
+        awayScore: "105",
+        quarter: "Q4",
         timeRemaining: "2'"
     },
     {
         homeTeam: "Hornets",
-        homeScore: "23",
-        awayTeam: "Timberwolves",
-        awayScore: "30",
-        quarter: "1Q",
+        homeScore: "90",
+        awayTeam: "Lakers",
+        awayScore: "79",
+        quarter: "Q3",
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Suns",
-        homeScore: "23",
-        awayTeam: "76ers",
-        awayScore: "30",
-        quarter: "3Q",
-        timeRemaining: "2'"
-    },
-    {
-        homeTeam: "Thunder",
-        homeScore: "23",
-        awayTeam: "Spurs",
-        awayScore: "30",
-        quarter: "3Q",
-        timeRemaining: "2'"
-    },
-    {
-        homeTeam: "Nets",
-        homeScore: "23",
-        awayTeam: "Celtics",
-        awayScore: "30",
-        quarter: "3Q",
-        timeRemaining: "2'"
-    },
-    {
-        homeTeam: "Trail Blazers",
-        homeScore: "23",
-        awayTeam: "Hawks",
-        awayScore: "30",
-        quarter: "3Q",
+        homeTeam: "Grizzlies",
+        homeScore: "90",
+        awayTeam: "Raptors",
+        awayScore: "79",
+        quarter: "Q3",
         timeRemaining: "2'"
     }
 ]

@@ -14,9 +14,11 @@ const useStyles = makeStyles((theme) => ({
     '@keyframes livePulse': {
         from: {
             background:'#ff0000',
+            // background:'transparent',
         },
         to: {
-            background:'#cc0000',
+            background:'#ff0066',
+            // background:'transparent',
         },
     },
     "@keyframes shadowPulse": {
@@ -40,7 +42,25 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         position: 'relative',
         fontFamily: 'Roboto Mono',
-        background:'#006BB6',
+        background:'#ED6D1C',
+    },
+    modalBox: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        width:'400px',
+        padding:'50px',
+        borderRadius: 20,
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center',
+        // boxShadow:'0 0 100px rgba(255,255,255,1)',
+        backgroundColor: "white",
+        animation: '$lightGlow 20s ease infinite',
+        '@media (max-width:600px)': {
+            width: '100vw',
+            height:'100vh',
+            paddingTop:200
+        },
     },
     goBack: {
         cursor: 'pointer',
@@ -58,7 +78,10 @@ const useStyles = makeStyles((theme) => ({
         borderRadius:50,
         padding: '10px 15px',
         color: 'white',
+        marginBottom:10,
+        // border:'2px solid white',
         animation: '$livePulse 1.5s infinite alternate linear',
+        boxShadow:'0px 0px 20px rgba(255,255,255,1)',
         [theme.breakpoints.down('xs')]: {
             color:'transparent',
             width:20,
@@ -160,6 +183,14 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '15vw',
         }
     },
+    timeContainer: {
+        background:'rgba(255,255,255,1)',
+        width:'auto',
+        display:'inline-block',
+        padding:20,
+        borderRadius:'40px'
+
+    },
     homeTeamScore: {
         fontSize: '10vw',
         fontWeight: 700,
@@ -177,8 +208,9 @@ const useStyles = makeStyles((theme) => ({
     },
     gameTime: {
         fontSize: '1.7em',
-        lineHeight:'1.2em',
-        color:'white',
+        lineHeight:'1.4em',
+        margin:0,
+        // color:'white',
         textAlign:'center',
         [theme.breakpoints.down('xs')]: {
             fontSize:'1em'
@@ -232,6 +264,35 @@ const useStyles = makeStyles((theme) => ({
         background:'#00538C',
         padding:10,
         borderRadius:'50px'
+    },
+    calibrateOverlay: {
+        display:'none',
+        position:'fixed',
+        height:'200vh',
+        width:'100vw',
+        background:'rgba(0,0,0,.5)',
+        zIndex:2
+    },
+    slider: {
+        display:'flex',
+        alignItems:'center',
+        maxWidth:'80%',
+        margin:'50px 10% 60px'
+    },
+    line: {
+        background:'black',
+        display:'flex',
+        width:'100%',
+        height:2
+    },
+    dot: {
+        background:'black',
+        display:'flex',
+        left:'150px',
+        position:'absolute',
+        height:20,
+        width:20,
+        borderRadius:20,
     }
 }))
 
@@ -246,12 +307,12 @@ const GamePage = (props) => {
     const mockGameData = [
         {
             homeTeam: "Mavericks",
-            homeScore: "23",
+            homeScore: "88",
             awayTeam: "Knicks",
-            awayScore: "30",
-            quarter: "1Q",
+            awayScore: "105",
             timeRemaining: "2'",
-            gameTime: "1st Quarter 6 "
+            gameQuarter: "Q2",
+            gameTime: "6'",
         }
     ]
 
@@ -266,6 +327,16 @@ const GamePage = (props) => {
 
     return (
         <div className={classes.wrapper}>
+            <div className={classes.calibrateOverlay}>
+            <div className={classes.modalBox}>
+                <h2 className={classes.h2}>CALIBRATE LATENCY</h2>
+                <div className={classes.slider}>
+                    <div className={classes.line}></div>
+                    <div className={classes.dot}></div>
+                </div>
+                <button className={classes.calibrate}>CONFIRM</button>
+            </div>
+            </div>
             <h1 className={classes.goBack} onClick={toggleGameView}>🡐 See all games</h1>
 
             <Grid container className={classes.gameInfo}>
@@ -282,9 +353,12 @@ const GamePage = (props) => {
                     </div>
                 </Grid>
                 <Grid item xs={2} className={classes.timeItems}>
-                    {/* <p>{game.quarter}</p> */}
-                    <div className={classes.live}>
-                        LIVE
+                    <div className={classes.timeContainer}>
+                        <div className={classes.live}>
+                            LIVE
+                        </div>
+                        <p className={classes.gameTime}>{game ? game.gameQuarter : ""}</p>
+                        <p className={classes.gameTime}>{game ? game.gameTime : ""}</p>
                     </div>
                 </Grid>
                 <Grid item xs={4} sm={2}>
