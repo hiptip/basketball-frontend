@@ -261,7 +261,7 @@ const GamePage = (props) => {
     }
 
 
-    var game = mockGameData.find(game => game.homeTeam === props.homeTeam) //default to state if no value
+    var game = props.liveGames.find(game => game.homeTeam === props.homeTeam) //default to state if no value
     // console.log(game)
 
     return (

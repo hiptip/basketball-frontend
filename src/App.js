@@ -22,7 +22,7 @@ const App = () => {
   const [homeTeam, setHomeTeam] = useState()
   const [awayTeam, setAwayTeam] = useState()
   const [timeStamp, setTimeStamp] = useState('')
-  const [delay, setDelay] = useState(60000)
+  const [delay, setDelay] = useState(13000)
   const [checkedLights, setCheckedLights] = useState([])
   const [gameView, setGameView] = useState(false)
   const [singleGameData, setSingleGameData] = useState({})
@@ -67,7 +67,6 @@ const App = () => {
   const controlLights = (game) => {
     if (game) {
       let colorXY = scoreToXY(parseInt(game.homeScore), parseInt(game.awayScore))
-      console.log(colorXY)
       setColor(colorXY[0], colorXY[1], checkedLights) //seems like this isn't actually updating
     }
   }
@@ -121,8 +120,8 @@ const App = () => {
   }, [hueConfigured])
 
   const setColor = (x, y, lights) => {
-    for (const light in lights) {
-      fetch(`https://${bridgeIp}/api/${hueUsername}/lights/${light}/state`, { 
+    for (let [index, val] of lights.entries()) {
+      fetch(`http://${bridgeIp}/api/${hueUsername}/lights/${val}/state`, { 
         method: 'PUT',
         body: JSON.stringify({ "xy": [x, y] })
       })

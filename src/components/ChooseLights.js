@@ -476,7 +476,7 @@ const ChooseLights = (props) => {
         <div className={classes.modalBox}>
             <h2 className={classes.h2}>Choose lights</h2>
         <ul className={classes.list}>
-                {props.lights && Object.entries(mockData).map(([key, value]) =>
+                {props.lights && Object.entries(props.lights).map(([key, value]) =>
                     <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} /> {value.name}</li>
                 )}
             </ul>
