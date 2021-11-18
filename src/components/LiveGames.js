@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
             background:'#ff0000',
         },
         to: {
-            background:'#cc0000',
+            background:'#ff0066',
         },
     },
     "@keyframes gradient": {
@@ -58,8 +58,10 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: 2,
         borderRadius:50,
         padding: '10px 15px',
+        border:'2px solid white',
         color: 'white',
         animation: '$livePulse 1.5s infinite alternate linear',
+        boxShadow:'0px 0px 20px rgba(255,255,255,1)'
     },
     liveGameHeading: {
         textAlign: 'center',
@@ -83,42 +85,42 @@ const useStyles = makeStyles((theme) => ({
 const mockGameData = [
     {
         homeTeam: "Mavericks",
-        homeScore: "23",
+        homeScore: "88",
         awayTeam: "Knicks",
-        awayScore: "30",
-        quarter: "1Q",
+        awayScore: "105",
+        quarter: "Q4",
         timeRemaining: "2'"
     },
     {
         homeTeam: "Hornets",
-        homeScore: "23",
+        homeScore: "90",
         awayTeam: "Timberwolves",
-        awayScore: "30",
-        quarter: "1Q",
+        awayScore: "79",
+        quarter: "Q3",
         timeRemaining: "2'"
     },
     {
         homeTeam: "Suns",
-        homeScore: "23",
+        homeScore: "66",
         awayTeam: "76ers",
-        awayScore: "30",
-        quarter: "3Q",
+        awayScore: "46",
+        quarter: "Q3",
         timeRemaining: "2'"
     },
     {
         homeTeam: "Thunder",
-        homeScore: "23",
+        homeScore: "72",
         awayTeam: "Spurs",
-        awayScore: "30",
+        awayScore: "67",
         quarter: "3Q",
         timeRemaining: "2'"
     },
     {
         homeTeam: "Nets",
-        homeScore: "23",
+        homeScore: "43",
         awayTeam: "Celtics",
-        awayScore: "30",
-        quarter: "3Q",
+        awayScore: "50",
+        quarter: "2Q",
         timeRemaining: "2'"
     },
     {
@@ -126,7 +128,7 @@ const mockGameData = [
         homeScore: "23",
         awayTeam: "Hawks",
         awayScore: "30",
-        quarter: "3Q",
+        quarter: "1Q",
         timeRemaining: "2'"
     }
 ]
