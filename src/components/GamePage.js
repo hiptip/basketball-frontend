@@ -44,6 +44,24 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto Mono',
         background:'#ED6D1C',
     },
+    modalBox: {
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        width:'400px',
+        padding:'50px',
+        borderRadius: 15,
+        transform: 'translate(-50%, -50%)',
+        textAlign: 'center',
+        // boxShadow:'0 0 100px rgba(255,255,255,1)',
+        backgroundColor: "white",
+        animation: '$lightGlow 20s ease infinite',
+        '@media (max-width:600px)': {
+            width: '100vw',
+            height:'100vh',
+            paddingTop:200
+        },
+    },
     goBack: {
         cursor: 'pointer',
         fontSize: '3vh',
@@ -246,6 +264,35 @@ const useStyles = makeStyles((theme) => ({
         background:'#00538C',
         padding:10,
         borderRadius:'50px'
+    },
+    calibrateOverlay: {
+        display:'none',
+        position:'fixed',
+        height:'200vh',
+        width:'100vw',
+        background:'rgba(0,0,0,.5)',
+        zIndex:2
+    },
+    slider: {
+        display:'flex',
+        alignItems:'center',
+        maxWidth:'80%',
+        margin:'50px 10% 60px'
+    },
+    line: {
+        background:'black',
+        display:'flex',
+        width:'100%',
+        height:2
+    },
+    dot: {
+        background:'black',
+        display:'flex',
+        left:'150px',
+        position:'absolute',
+        height:20,
+        width:20,
+        borderRadius:20,
     }
 }))
 
@@ -280,6 +327,16 @@ const GamePage = (props) => {
 
     return (
         <div className={classes.wrapper}>
+            <div className={classes.calibrateOverlay}>
+            <div className={classes.modalBox}>
+                <h2 className={classes.h2}>CALIBRATE LATENCY</h2>
+                <div className={classes.slider}>
+                    <div className={classes.line}></div>
+                    <div className={classes.dot}></div>
+                </div>
+                <button className={classes.calibrate}>CONFIRM</button>
+            </div>
+            </div>
             <h1 className={classes.goBack} onClick={toggleGameView}>🡐 See all games</h1>
 
             <Grid container className={classes.gameInfo}>
