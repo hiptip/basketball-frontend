@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         position: 'relative',
         fontFamily: 'Roboto Mono',
-        background:'#006BB6',
+        background:'#ED6D1C',
     },
     goBack: {
         cursor: 'pointer',

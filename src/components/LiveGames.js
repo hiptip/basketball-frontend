@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         right: 0,
         overflow: 'auto',
+        alignContent:'flex-start',
         backgroundImage: `linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)`,
         backgroundPosition: 'center, center',
         backgroundSize: '400% 400%',
@@ -54,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto Mono',
         fontWeight: 'bold',
         fontSize: '1em',
-        display:'inline-flex',
         letterSpacing: 2,
         borderRadius:50,
         padding: '10px 15px',
@@ -94,41 +94,17 @@ const mockGameData = [
     {
         homeTeam: "Hornets",
         homeScore: "90",
-        awayTeam: "Timberwolves",
+        awayTeam: "Lakers",
         awayScore: "79",
         quarter: "Q3",
         timeRemaining: "2'"
     },
     {
-        homeTeam: "Suns",
-        homeScore: "66",
-        awayTeam: "76ers",
-        awayScore: "46",
+        homeTeam: "Grizzlies",
+        homeScore: "90",
+        awayTeam: "Raptors",
+        awayScore: "79",
         quarter: "Q3",
-        timeRemaining: "2'"
-    },
-    {
-        homeTeam: "Thunder",
-        homeScore: "72",
-        awayTeam: "Spurs",
-        awayScore: "67",
-        quarter: "3Q",
-        timeRemaining: "2'"
-    },
-    {
-        homeTeam: "Nets",
-        homeScore: "43",
-        awayTeam: "Celtics",
-        awayScore: "50",
-        quarter: "2Q",
-        timeRemaining: "2'"
-    },
-    {
-        homeTeam: "Trail Blazers",
-        homeScore: "23",
-        awayTeam: "Hawks",
-        awayScore: "30",
-        quarter: "1Q",
         timeRemaining: "2'"
     }
 ]

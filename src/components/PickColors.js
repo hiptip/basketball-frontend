@@ -15,11 +15,10 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid #ccc',
         background: '#fff',
         overflow: 'auto',
-        borderRadius: 10,
+        borderRadius: 15,
         outline: 'none',
         padding: '40px 0',
-        width: '40%',
-        minWidth:'500px',
+        width:'700px',
         [theme.breakpoints.down('sm')]: {
             width: '100%',
             height: '100%'
@@ -36,8 +35,12 @@ const useStyles = makeStyles((theme) => ({
     modalHeader: {
         textAlign: 'center',
         fontFamily: 'Roboto Mono',
-        margin:'20px 0 30px 0',
-        textTransform:'uppercase'
+        margin:'20px auto 30px auto',
+        maxWidth:500,
+        textTransform:'uppercase',
+        [theme.breakpoints.down('xs')]: {
+            fontSize:'1.1em'
+        }
     },
     logo: {
         height: 100,
