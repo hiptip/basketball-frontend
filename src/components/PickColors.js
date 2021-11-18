@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         border: '1px solid #ccc',
         background: '#fff',
         overflow: 'auto',
-        borderRadius: 15,
+        borderRadius: 20,
         outline: 'none',
         padding: '40px 0',
         width:'700px',

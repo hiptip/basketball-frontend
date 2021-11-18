@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         width:'400px',
         padding:'50px',
-        borderRadius: 15,
+        borderRadius: 20,
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
         // boxShadow:'0 0 100px rgba(255,255,255,1)',

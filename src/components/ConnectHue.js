@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         width:'400px',
         padding:'50px',
-        borderRadius: 15,
+        borderRadius: 20,
         transform: 'translate(-50%, -50%)',
         textAlign: 'center',
         backgroundColor: "white",
