@@ -328,6 +328,11 @@ const GamePage = (props) => {
         return teamData.logoURL
     }
 
+    const getShortName = (teamName) => {
+        const teamData = nbaLogoMap.find(team => teamName.includes(team.mascot))
+        return teamData.short
+    }
+
     const toggleCalibrateModal = () => {
         setIsOpen(true)
     }
@@ -359,7 +364,7 @@ const GamePage = (props) => {
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
-                        <p className={classes.awayTeamName}>{props.awayTeam}</p>
+                        <p className={classes.awayTeamName}>{getShortName(props.awayTeam)}</p>
                         <p className={classes.awayTeamScore}>{game ? game.awayScore : ""}</p>
                     </div>
                 </Grid>
@@ -374,7 +379,7 @@ const GamePage = (props) => {
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
-                        <p className={classes.homeTeamName}>{props.homeTeam}</p>
+                        <p className={classes.homeTeamName}>{getShortName(props.homeTeam)}</p>
                         <p className={classes.homeTeamScore}>{game ? game.homeScore : ""}</p>
                     </div>
                 </Grid>
