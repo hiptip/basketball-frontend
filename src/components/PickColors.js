@@ -112,7 +112,6 @@ const PickColors = React.memo((props) => {
     const [name, setName] = useState()
 
     const handleChangeComplete = (color) => {
-        console.log(color.hex)
         setTeamColor(color.hex)
     }
 
@@ -129,8 +128,9 @@ const PickColors = React.memo((props) => {
             props.setHomeColor(teamColor)
             props.setGameView(true)
             props.toggleModal()
+        } else {
+            props.setAwayColor(teamColor)
         }
-        props.setAwayColor(teamColor)
         setTeam(team + 1)
         setLogo(props.homeLogo)
         setName(props.homeName)

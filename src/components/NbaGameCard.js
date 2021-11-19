@@ -57,7 +57,10 @@ const useStyles = makeStyles((theme) => ({
         color:'white',
         marginLeft:10,
         textAlign:'left',
-        width:'100%'
+        width:'100%',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 32
+        }
     },
     teamNameHome: {
         fontFamily: 'Roboto Mono',
@@ -74,7 +77,10 @@ const useStyles = makeStyles((theme) => ({
         color:'white',
         margin:0,
         marginRight:10,
-        textAlign:'right'
+        textAlign:'right',
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 32
+        }
     },
     centerSpread: {
         alignItems: 'center',
@@ -124,7 +130,8 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:'rgba(255,255,255,.2)',
         [theme.breakpoints.down('xs')]: {
             width: 20,
-            height: 20
+            height: 20,
+            // backgroundColor: props.lightColorHex,
         }
     }
 }));

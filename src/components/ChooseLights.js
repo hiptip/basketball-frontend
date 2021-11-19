@@ -470,13 +470,20 @@ const ChooseLights = (props) => {
         props.setHueConfigured(true)
     }
 
+    const indicateLight = (val) => {
+        fetch(`http://${props.bridgeIp}/api/${props.hueUsername}/lights/${val}/state`, { 
+            method: 'PUT',
+            body: JSON.stringify({ "alert": "select" })
+        })
+    }
+
 
     return (
         <div className={classes.modalBox}>
             <h2 className={classes.h2}>Choose lights</h2>
         <ul className={classes.list}>
                 {props.lights && Object.entries(props.lights).map(([key, value]) =>
-                    <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} /> {value.name}</li>
+                    <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} onClick={() => indicateLight(key)} /> {value.name}</li>
                 )}
             </ul>
             <button className={classes.button} onClick={setLights}>NEXT</button>

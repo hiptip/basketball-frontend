@@ -112,7 +112,7 @@ const mockGameData = [
 const LiveGames = (props) => {
     const classes = useStyles();
 
-    // if (props.liveGames.length === 0) {    uncomment this out for no live games
+    // if (props.liveGames.length === 0) {    // uncomment this out for no live games
     //     return (
     //         <h1>No Live Games</h1>
     //     )
@@ -130,7 +130,7 @@ const LiveGames = (props) => {
             </Grid>
             {props.liveGames.map(data => //change to props.liveGames
                 <Grid item xs={12}>
-                    <NbaGameCard {...data} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} setGameView={props.setGameView} setSingleGameData={props.setSingleGameData} />
+                    <NbaGameCard {...data} lightColorHex={props.lightColorHex} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} setGameView={props.setGameView} setSingleGameData={props.setSingleGameData} />
                 </Grid>
             )}
         </Grid>

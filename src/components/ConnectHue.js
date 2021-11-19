@@ -202,7 +202,7 @@ const ConnectHue = (props) => {
                 </div>
             }
             {hueConnected &&
-                <ChooseLights lights={lights} setCheckedLights={props.setCheckedLights} setHueConfigured={props.setHueConfigured} />
+                <ChooseLights lights={lights} setCheckedLights={props.setCheckedLights} setHueConfigured={props.setHueConfigured} bridgeIp={props.bridgeIp} hueUsername={props.hueUsername} />
             }
         </div>
     )

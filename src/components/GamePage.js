@@ -6,6 +6,7 @@ import Icons from "@material-ui/icons";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Calibration from "./Calibration";
 import Grid from '@material-ui/core/Grid';
 import PickColors from './PickColors';
 import { nbaLogoMap } from '../util/logos'
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         position: 'relative',
         fontFamily: 'Roboto Mono',
-        background:'#ED6D1C',
+        background: (props) => props.lightColorHex,
     },
     modalBox: {
         position: 'fixed',
@@ -298,10 +299,16 @@ const useStyles = makeStyles((theme) => ({
 
 const GamePage = (props) => {
 
-    const classes = useStyles();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const classes = useStyles(props);
 
     const toggleGameView = () => {
         props.setGameView(!props.gameView)
+    }
+
+    const closeScreen = () => {
+        setIsOpen(false)
     }
 
     const mockGameData = [
@@ -319,6 +326,10 @@ const GamePage = (props) => {
     const getLogoUrl = (teamName) => {
         const teamData = nbaLogoMap.find(team => teamName.includes(team.mascot))
         return teamData.logoURL
+    }
+
+    const toggleCalibrateModal = () => {
+        setIsOpen(true)
     }
 
 
@@ -374,7 +385,8 @@ const GamePage = (props) => {
                     <div className={classes.changeColor}><div class={classes.homeColor}></div>Change Color</div>
                 </Grid>
             </Grid>
-            <button className={classes.calibrate}>CALIBRATE LATENCY</button>
+            <button className={classes.calibrate} onClick={toggleCalibrateModal} >CALIBRATE LATENCY</button>
+            <Calibration isOpen={isOpen} closeScreen={closeScreen} intervalId={props.intervalId} setIntervalId={props.setIntervalId} setDelay={props.setDelay} delay={props.delay} />
         </div>
     )
 }
