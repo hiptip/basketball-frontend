@@ -254,7 +254,7 @@ const useStyles = makeStyles((theme) => ({
         display:'inline-block',
         textTransform:'uppercase',
         marginRight:10,
-        background:'#F58426',
+        background: (props) => props.awayColor,
         padding:10,
         borderRadius:'50px'
     },
@@ -262,7 +262,7 @@ const useStyles = makeStyles((theme) => ({
         display:'inline-block',
         textTransform:'uppercase',
         marginRight:10,
-        background:'#00538C',
+        background: (props) => props.homeColor,
         padding:10,
         borderRadius:'50px'
     },
