@@ -14,11 +14,9 @@ const useStyles = makeStyles((theme) => ({
     '@keyframes livePulse': {
         from: {
             background:'#ff0000',
-            // background:'transparent',
         },
         to: {
             background:'#ff0066',
-            // background:'transparent',
         },
     },
     "@keyframes shadowPulse": {
@@ -34,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
     },
     wrapper: {
         // border: '1px solid black',
-        width: '100vw',
+        width: '99vw',
         height: '101vh',
         display: 'block',
+        padding:'40px 1vw',
         margin: 'auto',
         marginTop: -22,
         justifyContent: 'center',
@@ -61,13 +60,6 @@ const useStyles = makeStyles((theme) => ({
             height:'100vh',
             paddingTop:200
         },
-    },
-    goBack: {
-        cursor: 'pointer',
-        fontSize: '3vh',
-        padding:50,
-        color:'white',
-        textTransform:'uppercase'
     },
     live: {
         fontFamily: 'Roboto Mono',
@@ -102,7 +94,6 @@ const useStyles = makeStyles((theme) => ({
         margin:'0 auto',
         borderRadius: '100%',
         animation: '$shadowPulse 5s linear infinite',
-        // border:'3px solid white',
         backgroundColor:'rgba(255,255,255,.1)',
         [theme.breakpoints.down('md')]: {
             width: 150,
@@ -221,13 +212,25 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:'black',
         color:'white',
         padding:'20px 30px',
-        border:'none',
-        fontFamily:'Roboto Mono',
-        fontSize:'1em',
-        fontWeight:'bold',
         margin:'40px auto',
         borderRadius:'50px',
-        cursor:'pointer'
+        cursor:'pointer',
+        border:'none'
+    },
+    buttonStyle: {
+        display:'block',
+        cursor: 'pointer',
+        fontSize: '1em',
+        fontFamily:'Roboto Mono',
+        fontWeight:'bold',
+        padding:'20px 30px',
+        textTransform:'uppercase',
+        borderRadius:'50px'
+    },
+    goBack: {
+        backgroundColor:'transparent',
+        border:'2px solid white',
+        color:'white',
     },
     changeColor: {
         margin:'0 auto',
@@ -337,7 +340,8 @@ const GamePage = (props) => {
                 <button className={classes.calibrate}>CONFIRM</button>
             </div>
             </div>
-            <h1 className={classes.goBack} onClick={toggleGameView}>🡐 See all games</h1>
+
+            <button className={`${classes.goBack} ${classes.buttonStyle}`} onClick={toggleGameView}>See all games</button>
 
             <Grid container className={classes.gameInfo}>
                 <Grid item xs={1} sm={3} className={classes.logoItems}>
@@ -374,7 +378,7 @@ const GamePage = (props) => {
                     <div className={classes.changeColor}><div class={classes.homeColor}></div>Change Color</div>
                 </Grid>
             </Grid>
-            <button className={classes.calibrate}>CALIBRATE LATENCY</button>
+            <button className={`${classes.calibrate} ${classes.buttonStyle}`}>CALIBRATE LATENCY</button>
         </div>
     )
 }
