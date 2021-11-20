@@ -150,12 +150,16 @@ const NbaGameCard = (props) => {
     // const routeResults = useRoutes(routes);
 
     const toggleModal = () => {
-        console.log()
         setIsOpen(true);
     }
 
     const closeScreen = () => {
         setIsOpen(false)
+    }
+
+    const getShortName = (teamName) => {
+        const teamData = nbaLogoMap.find(team => teamName.includes(team.mascot))
+        return teamData.short
     }
 
     const setTeams = (hTeam, aTeam) => {
@@ -186,7 +190,7 @@ const NbaGameCard = (props) => {
                 </Grid>
                 <Grid item xs={3}>
                         <div className={classes.stats}>
-                            <p className={classes.teamNameAway}>{props.awayTeam}</p>
+                            <p className={classes.teamNameAway}>{getShortName(props.awayTeam)}</p>
                             <p className={classes.scoreAway}>{props.awayScore}</p>
                         </div>
                 </Grid>
@@ -198,7 +202,7 @@ const NbaGameCard = (props) => {
                 </Grid>
                 <Grid item xs={3}>
                         <div className={classes.stats}>
-                            <p className={classes.teamNameHome}>{props.homeTeam}</p>
+                            <p className={classes.teamNameHome}>{getShortName(props.homeTeam)}</p>
                             <p className={classes.scoreHome}>{props.homeScore}</p>
                         </div>
                 </Grid>

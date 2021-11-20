@@ -158,7 +158,7 @@ const App = () => {
         </div>
       }
       { (hueConfigured && gameView) &&
-        <GamePage setDelay={setDelay} setIntervalId={setCurrentIntervalId} intervalId={currentIntervalId} delay={delay} homeTeam={homeTeam} awayTeam={awayTeam} homeColor={homeColor} awayColor={awayColor} liveGames={liveGames} setGameView={setGameView} gameView={gameView} lightColorHex={lightColorHex} />
+        <GamePage setDelay={setDelay} setIntervalId={setCurrentIntervalId} intervalId={currentIntervalId} delay={delay} homeTeam={homeTeam} awayTeam={awayTeam} homeColor={homeColor} awayColor={awayColor} liveGames={liveGames} setGameView={setGameView} gameView={gameView} lightColorHex={lightColorHex} setHomeColor={setHomeColor} setAwayColor={setAwayColor} />
       }
     </div>
   );

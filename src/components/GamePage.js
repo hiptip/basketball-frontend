@@ -8,7 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Calibration from "./Calibration";
 import Grid from '@material-ui/core/Grid';
-import PickColors from './PickColors';
+import PickSingleColor from './PickSingleColor';
 import { nbaLogoMap } from '../util/logos'
 
 const useStyles = makeStyles((theme) => ({
@@ -300,6 +300,9 @@ const useStyles = makeStyles((theme) => ({
 const GamePage = (props) => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const [isColorOpen, setIsColorOpen] = useState(false);
+    const [colorPickTeam, setColorPickTeam] = useState();
+
 
     const classes = useStyles(props);
 
@@ -333,12 +336,39 @@ const GamePage = (props) => {
         return teamData.short
     }
 
+    const getQuarter = (gameTime) => {
+        var regex = /'\b\d'/
+        var quarter = ''
+        console.log(gameTime)
+        if (regex.exec(gameTime)) {
+            quarter = gameTime[0]
+        }
+        return quarter
+    }
+
+    
+    const getTimeRemaining = (gameTime) => {
+    }
+
+    const togglePickColorModal = () => {
+        setIsColorOpen(true);
+    }
+
+    const closeColorScreen = () => {
+        setIsColorOpen(false)
+    }
+
     const toggleCalibrateModal = () => {
         setIsOpen(true)
     }
 
+    const changeColor = (team) => {
+        setColorPickTeam(team)
+        togglePickColorModal()
+    }
 
-    var game = props.liveGames.find(game => game.homeTeam === props.homeTeam) //default to state if no value
+
+    var game = mockGameData.find(game => game.homeTeam === props.homeTeam) //default to state if no value
     // console.log(game)
 
     return (
@@ -360,7 +390,7 @@ const GamePage = (props) => {
                     <div className={classes.logoContainer}>
                         <img className={classes.logo} src={getLogoUrl(props.awayTeam)} alt='team logo'></img>
                     </div>
-                    <div className={classes.changeColor}><div class={classes.awayColor}></div>Change Color</div>
+                    <div className={classes.changeColor} onClick={() => changeColor("away")} ><div class={classes.awayColor}></div>Change Color</div>
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
@@ -373,8 +403,8 @@ const GamePage = (props) => {
                         <div className={classes.live}>
                             LIVE
                         </div>
-                        <p className={classes.gameTime}>{game ? game.gameQuarter : ""}</p>
-                        <p className={classes.gameTime}>{game ? game.gameTime : ""}</p>
+                        <p className={classes.gameTime}>{game ? "1Q": ""}</p>
+                        <p className={classes.gameTime}>{game ? "11'" : ""}</p>
                     </div>
                 </Grid>
                 <Grid item xs={4} sm={2}>
@@ -387,11 +417,12 @@ const GamePage = (props) => {
                     <div className={classes.logoContainer}>
                         <img className={classes.logo} src={getLogoUrl(props.homeTeam)} alt='team logo'></img>
                     </div>
-                    <div className={classes.changeColor}><div class={classes.homeColor}></div>Change Color</div>
+                    <div className={classes.changeColor} onClick={() => changeColor("home")} ><div class={classes.homeColor}></div>Change Color</div>
                 </Grid>
             </Grid>
             <button className={classes.calibrate} onClick={toggleCalibrateModal} >CALIBRATE LATENCY</button>
             <Calibration isOpen={isOpen} closeScreen={closeScreen} intervalId={props.intervalId} setIntervalId={props.setIntervalId} setDelay={props.setDelay} delay={props.delay} />
+            <PickSingleColor toggleModal={togglePickColorModal} isOpen={isColorOpen} closeScreen={closeColorScreen} team={colorPickTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} awayTeam={props.awayTeam} homeTeam={props.homeTeam} setGameView={props.setGameView} />
         </div>
     )
 }

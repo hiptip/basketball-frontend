@@ -103,13 +103,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PickColors = React.memo((props) => {
+const PickSingleColor = React.memo((props) => {
     const classes = useStyles();
     const [isOpen, setIsOpen] = useState(false);
     const [teamColor, setTeamColor] = useState()
-    const [team, setTeam] = useState(1)
-    const [logo, setLogo] = useState()
-    const [name, setName] = useState(props.awayTeam)
+    // const [team, setTeam] = useState(1)
+    // const [logo, setLogo] = useState()
 
     const handleChangeComplete = (color) => {
         setTeamColor(color.hex)
@@ -123,34 +122,38 @@ const PickColors = React.memo((props) => {
     //     props.setIsOpen(false)
     // }
 
-    const nextScreen = () => {
-        if (team === 2) {
-            props.setHomeColor(teamColor)
-            props.setGameView(true)
-            props.toggleModal()
-        } else {
-            props.setAwayColor(teamColor)
-        }
-        setTeam(team + 1)
-        setLogo(props.homeLogo)
-        setName(props.homeTeam)
+    // const nextScreen = () => {
+    //     if (team === 2) {
+    //         props.setHomeColor(teamColor)
+    //         props.setGameView(true)
+    //         props.toggleModal()
+    //     } else {
+    //         props.setAwayColor(teamColor)
+    //     }
+    //     setTeam(team + 1)
+    //     setLogo(props.homeLogo)
+    //     setName(props.homeTeam)
 
-    }
+    // }
 
-    const prevScreen = () => {
-        setTeam(team - 1)
-        setLogo(props.awayLogo)
-        setName(props.awayTeam)
-    }
+    // const prevScreen = () => {
+    //     setTeam(team - 1)
+    //     setLogo(props.awayLogo)
+    //     setName(props.awayTeam)
+    // }
 
-    const getLogoUrl = (teamNum) => {
-        const teamName = teamNum === 1 ? props.awayTeam : props.homeTeam
+    const getLogoUrl = (teamName) => {
         if (teamName) {
             const teamData = nbaLogoMap.find(t => teamName.includes(t.mascot))
             return teamData.logoURL
         }
         return ""
     }
+
+    const setColor = () => {
+        (props.team === "home") ? props.setHomeColor(teamColor) : props.setAwayColor(teamColor)
+        props.closeScreen()
+    } 
 
     return (
         <div className="App">
@@ -166,16 +169,17 @@ const PickColors = React.memo((props) => {
             >
                 <div>
                     <div class={classes.logoContainerColorPicker}>
-                    <img className={classes.logo} src={getLogoUrl(team)}></img>
+                    <img className={classes.logo} src={getLogoUrl((props.team === "home") ? props.homeTeam : props.awayTeam)} alt={`${props.team} logo`}></img>
                     </div>
-                    <h1 className={classes.modalHeader}>Choose {name} Color</h1>
+                    <h1 className={classes.modalHeader}>Choose {(props.team === "home") ? props.homeTeam : props.awayTeam} Color</h1>
                     <ChromePicker
                         color={teamColor}
                         onChangeComplete={handleChangeComplete}
                         className={classes.colorPicker}
                     />
                     <footer className={classes.modalFooter}>
-                        {(team === 1) ? <button className={classes.nextButton} onClick={nextScreen}>NEXT</button> : <div><button className={classes.prevButton} onClick={prevScreen}>BACK</button><button className={classes.nextButton} onClick={nextScreen}>NEXT</button></div>}
+                        <button className={classes.nextButton} onClick={setColor}>SET COLOR</button>
+                        {/* {(team === 1) ? <button className={classes.nextButton} onClick={nextScreen}>NEXT</button> : <div><button className={classes.prevButton} onClick={prevScreen}>BACK</button><button className={classes.nextButton} onClick={nextScreen}>NEXT</button></div>} */}
                     </footer>
                 </div>
             </Modal>
@@ -183,4 +187,4 @@ const PickColors = React.memo((props) => {
     )
 })
 
-export default PickColors
+export default PickSingleColor
