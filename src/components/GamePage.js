@@ -16,18 +16,18 @@ const useStyles = makeStyles((theme) => ({
             background:'#ff0000',
         },
         to: {
-            background:'#ff0066',
+            background:'#990000',
         },
     },
     "@keyframes shadowPulse": {
         "0%": {
-            boxShadow:'0px 0px 50px rgba(255,255,255,1), inset 0px 0px 20px rgba(0,0,0,.2)'
+            boxShadow:'0px 0px 20px rgba(255,255,255,.5), inset 0px 0px 20px rgba(0,0,0,.2)'
         },
         "50%": {
-            boxShadow:'0px 0px 50px rgba(255,255,255,.5), inset 0px 0px 20px rgba(0,0,0,.5)'
+            boxShadow:'0px 0px 20px rgba(255,255,255,.2), inset 0px 0px 20px rgba(0,0,0,.5)'
         },
         "100%": {
-            boxShadow:'0px 0px 50px rgba(255,255,255,1), inset 0px 0px 20px rgba(0,0,0,.2)'
+            boxShadow:'0px 0px 20px rgba(255,255,255,.5), inset 0px 0px 20px rgba(0,0,0,.2)'
         }
     },
     wrapper: {
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         fontFamily: 'Roboto Mono',
         background:'#ED6D1C',
+        // background:'white',
     },
     modalBox: {
         position: 'fixed',
@@ -66,13 +67,12 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 'bold',
         fontSize: '1em',
         display:'inline-flex',
-        letterSpacing: 2,
         borderRadius:50,
         padding: '10px 15px',
         color: 'white',
         marginBottom:10,
         // border:'2px solid white',
-        animation: '$livePulse 1.5s infinite alternate linear',
+        animation: '$livePulse 1s infinite alternate linear',
         boxShadow:'0px 0px 20px rgba(255,255,255,1)',
         [theme.breakpoints.down('xs')]: {
             color:'transparent',
@@ -83,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
     },
     logoItems: {
         justifyContent:'center',
-        textAlign:'center'
+        textAlign:'center',
+        position:'relative'
     },
     logoContainer: {
         position:'relative',
@@ -139,48 +140,60 @@ const useStyles = makeStyles((theme) => ({
         alignContent: 'center'      /* for multi-line flex container */
     },
     nameScore: {
-        color:'white'
+        color:'white',
+        display:'block',
+        position:'relative'
     },
-    awayTeamName: {
-        fontSize: '3vw',
-        textTransform: 'uppercase',
+    text: {
+        color:'white',
         fontWeight:'bold',
-        textAlign:'center',
         lineHeight:'1em',
         margin:0,
+        textShadow:'0px 0px 10px rgba(0,0,0,.5)',
+        textTransform: 'uppercase',
+    },
+    teamName: {
+        fontSize: '3vw',
+        textAlign:'center',
         [theme.breakpoints.down('sm')]: {
             fontSize:'3vw'
         },
+        position:'absolute',
+        display:'block',
+        width:'100%',
+        top:'-3vw'
     },
-    homeTeamName: {
-        fontSize: '3vw',
-        textTransform: 'uppercase',
-        fontWeight:'bold',
-        textAlign:'center',
-        lineHeight:'1em',
-        margin:0,
-        [theme.breakpoints.down('sm')]: {
-            fontSize:'3vw'
-        },
-    },
-    awayTeamScore: {
-        fontSize: '10vw',
-        fontWeight: 700,
+    teamScore: {
+        fontSize: '9vw',
         margin: '10px 0',
         textAlign:'center',
-        lineHeight:'1em',
-        margin:0,
         [theme.breakpoints.down('xs')]: {
             fontSize: '15vw',
         }
     },
     timeContainer: {
-        background:'rgba(255,255,255,1)',
+        background:'white',
         width:'auto',
+        paddingTop:15,
         display:'inline-block',
-        padding:20,
-        borderRadius:'40px'
-
+        borderRadius:'29px',
+        boxShadow:'0px 0px 10px rgba(0,0,0,.5)',
+        overflow:'hidden'
+    },
+    small: {
+        fontSize:'.2em',
+        fontFamily:'Roboto',
+        background:'#fff',
+        padding:'15px 15px',
+        borderTop:'2px solid #ccc',
+        textTransform:'uppercase',
+        fontSize:'1em',
+        marginBottom:0,
+        '&:hover': {
+            cursor:'pointer',
+            textDecoration:'underline'
+        },
+        // textDecoration:'underline'
     },
     homeTeamScore: {
         fontSize: '10vw',
@@ -198,9 +211,10 @@ const useStyles = makeStyles((theme) => ({
         textAlign:'center'
     },
     gameTime: {
-        fontSize: '1.7em',
-        lineHeight:'1.4em',
-        margin:0,
+        fontSize: '1.5em',
+        lineHeight:'1em',
+        margin:'5px 0 0 0',
+        fontFamily:'Roboto',
         // color:'white',
         textAlign:'center',
         [theme.breakpoints.down('xs')]: {
@@ -221,21 +235,27 @@ const useStyles = makeStyles((theme) => ({
         display:'block',
         cursor: 'pointer',
         fontSize: '1em',
-        fontFamily:'Roboto Mono',
+        fontFamily:'Roboto',
         fontWeight:'bold',
         padding:'20px 30px',
         textTransform:'uppercase',
-        borderRadius:'50px'
+        borderRadius:'50px',
+        boxShadow:'0px 0px 10px rgba(0,0,0,.5)',
     },
     goBack: {
-        backgroundColor:'transparent',
-        border:'2px solid white',
-        color:'white',
+        backgroundColor:'white',
+        border:'none',
+        color:'black',
+    },
+    changeColorPosition: {
+        position:'absolute',
+        marginTop:'40px',
+        width:'100%'
     },
     changeColor: {
         margin:'0 auto',
-        marginTop:'20px',
         lineHeight:'1em',
+        fontFamily:'Roboto',
         fontWeight:'bold',
         fontSize:'1em',
         display:'inline-flex',
@@ -245,6 +265,7 @@ const useStyles = makeStyles((theme) => ({
         background:'white',
         padding:'10px 15px',
         borderRadius:'100px',
+        boxShadow:'0px 0px 10px rgba(0,0,0,.5)',
         '&:hover': {
             cursor:'pointer'
         },
@@ -341,19 +362,21 @@ const GamePage = (props) => {
             </div>
             </div>
 
-            <button className={`${classes.goBack} ${classes.buttonStyle}`} onClick={toggleGameView}>See all games</button>
+            <button className={`${classes.goBack} ${classes.buttonStyle}`} onClick={toggleGameView}><img className={classes.arrow} src='../assets/arrow.svg' alt='arrow'></img>See all games</button>
 
             <Grid container className={classes.gameInfo}>
                 <Grid item xs={1} sm={3} className={classes.logoItems}>
                     <div className={classes.logoContainer}>
                         <img className={classes.logo} src={getLogoUrl(props.awayTeam)} alt='team logo'></img>
                     </div>
-                    <div className={classes.changeColor}><div class={classes.awayColor}></div>Change Color</div>
+                    <div className={classes.changeColorPosition}>
+                        <div className={classes.changeColor}><div class={classes.awayColor}></div>Change Color</div>
+                    </div>
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
-                        <p className={classes.awayTeamName}>{props.awayTeam}</p>
-                        <p className={classes.awayTeamScore}>{game ? game.awayScore : ""}</p>
+                        <p className={`${classes.text} ${classes.teamName}`}>{props.awayTeam}</p>
+                        <p className={`${classes.text} ${classes.teamScore}`}>{game ? game.awayScore : ""}</p>
                     </div>
                 </Grid>
                 <Grid item xs={2} className={classes.timeItems}>
@@ -361,24 +384,25 @@ const GamePage = (props) => {
                         <div className={classes.live}>
                             LIVE
                         </div>
-                        <p className={classes.gameTime}>{game ? game.gameQuarter : ""}</p>
-                        <p className={classes.gameTime}>{game ? game.gameTime : ""}</p>
+                        <p className={classes.gameTime}>{game ? game.gameQuarter : ""} | {game ? game.gameTime : ""}</p>
+                        <p className={classes.small}>Calibrate</p>
                     </div>
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
-                        <p className={classes.homeTeamName}>{props.homeTeam}</p>
-                        <p className={classes.homeTeamScore}>{game ? game.homeScore : ""}</p>
+                        <p className={`${classes.text} ${classes.teamName}`}>{props.homeTeam}</p>
+                        <p className={`${classes.text} ${classes.teamScore}`}>{game ? game.homeScore : ""}</p>
                     </div>
                 </Grid>
                 <Grid item xs={1} sm={3} className={classes.logoItems}>
                     <div className={classes.logoContainer}>
                         <img className={classes.logo} src={getLogoUrl(props.homeTeam)} alt='team logo'></img>
                     </div>
-                    <div className={classes.changeColor}><div class={classes.homeColor}></div>Change Color</div>
+                    <div className={classes.changeColorPosition}>
+                        <div className={classes.changeColor}><div class={classes.homeColor}></div>Change Color</div>
+                    </div>
                 </Grid>
             </Grid>
-            <button className={`${classes.calibrate} ${classes.buttonStyle}`}>CALIBRATE LATENCY</button>
         </div>
     )
 }
