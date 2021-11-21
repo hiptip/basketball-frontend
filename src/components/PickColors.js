@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     modalHeader: {
         textAlign: 'center',
         fontFamily: 'Roboto',
+        fontWeight:500,
         margin:'20px auto 30px auto',
         maxWidth:500,
         // textTransform:'uppercase',

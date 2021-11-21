@@ -119,8 +119,8 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontFamily:'Roboto',
-        fontWeight:400,
-        margin:'30px 0 0 0',
+        fontWeight:500,
+        margin:'0 0 30px 0',
         '@media (max-width:600px)': {
             fontSize:'1.1em'
         },
@@ -204,10 +204,10 @@ const ConnectHue = (props) => {
             }
             {(waiting && !hueConnected) &&
                 <div class={classes.modalBox}>
+                    <h1 className={classes.heading}>Click the button on your hub to pair</h1>
                     <div>
                     <img className={classes.loader} src={BridgeGif} alt="" />
                     </div>
-                    <h1 className={classes.heading}>Click the button on your hub to pair</h1>
                 </div>
             }
             {hueConnected &&

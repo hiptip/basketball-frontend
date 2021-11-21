@@ -35,7 +35,8 @@ const useStyles = makeStyles({
         padding:0,
         margin:0,
         fontSize:'32px',
-        fontFamily:'Roboto'
+        fontFamily:'Roboto',
+        fontWeight:500
     },
     list: {
         textAlign: "left",
