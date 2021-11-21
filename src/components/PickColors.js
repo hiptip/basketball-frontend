@@ -98,6 +98,14 @@ const useStyles = makeStyles((theme) => ({
         background: 'white',
         color: 'black',
         border:'1px solid black'
+    },
+    cancelButton: {
+        display: 'none',
+        fontSize: '2em',
+        padding: '10px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'inline-block'
+        }
     }
 }));
 
@@ -163,8 +171,8 @@ const PickColors = React.memo((props) => {
                 shouldCloseOnOverlayClick={true}
             >
                 <div>
-                    <div onClick={props.closeScreen}>X</div>
-                    <div class={classes.logoContainerColorPicker}>
+                    <div className={classes.cancelButton} onClick={props.closeScreen}>X</div>
+                    <div className={classes.logoContainerColorPicker}>
                         <img className={classes.logo} src={getLogoUrl(team)} alt={`${team} logo`} ></img>
                     </div>
                     <h1 className={classes.modalHeader}>Choose {name} Color</h1>
