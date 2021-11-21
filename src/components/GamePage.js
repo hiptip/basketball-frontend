@@ -370,7 +370,7 @@ const GamePage = (props) => {
         return quarter
     }
 
-    
+
     const getTimeRemaining = (gameTime) => {
     }
 
@@ -422,8 +422,8 @@ const GamePage = (props) => {
                 </Grid>
                 <Grid item xs={4} sm={2}>
                     <div className={classes.nameScore}>
-                        <p className={classes.awayTeamName}>{getShortName(props.awayTeam)}</p>
-                        <p className={classes.awayTeamScore}>{game ? game.awayScore : ""}</p>
+                        <p className={`${classes.text} ${classes.teamName}`}>{getShortName(props.awayTeam)}</p>
+                        <p className={`${classes.text} ${classes.teamScore}`}>{game ? game.awayScore : ""}</p>
                     </div>
                 </Grid>
                 <Grid item xs={2} className={classes.timeItems}>
@@ -432,7 +432,7 @@ const GamePage = (props) => {
                             LIVE
                         </div>
                         <p className={classes.gameTime}>{game ? game.gameQuarter : ""} | {game ? game.gameTime : ""}</p>
-                        <p className={classes.small}>Calibrate</p>
+                        <p className={classes.small} onClick={toggleCalibrateModal}>Calibrate</p>
                     </div>
                 </Grid>
                 <Grid item xs={4} sm={2}>
@@ -450,7 +450,6 @@ const GamePage = (props) => {
                     </div>
                 </Grid>
             </Grid>
-            <button className={classes.calibrate} onClick={toggleCalibrateModal} >CALIBRATE LATENCY</button>
             <Calibration isOpen={isOpen} closeScreen={closeScreen} intervalId={props.intervalId} setIntervalId={props.setIntervalId} setDelay={props.setDelay} delay={props.delay} />
             <PickSingleColor toggleModal={togglePickColorModal} isOpen={isColorOpen} closeScreen={closeColorScreen} team={colorPickTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} awayTeam={props.awayTeam} homeTeam={props.homeTeam} setGameView={props.setGameView} initialColor={initialColor} />
         </div>
