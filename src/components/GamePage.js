@@ -399,16 +399,6 @@ const GamePage = (props) => {
 
     return (
         <div className={classes.wrapper}>
-            <div className={classes.calibrateOverlay}>
-            <div className={classes.modalBox}>
-                <h2 className={classes.h2}>CALIBRATE LATENCY</h2>
-                <div className={classes.slider}>
-                    <div className={classes.line}></div>
-                    <div className={classes.dot}></div>
-                </div>
-                <button className={classes.calibrate}>CONFIRM</button>
-            </div>
-            </div>
 
             <button className={`${classes.goBack} ${classes.buttonStyle}`} onClick={toggleGameView}><img className={classes.arrow} src={Arrow} alt='arrow'></img>See all games</button>
 
