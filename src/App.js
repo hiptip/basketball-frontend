@@ -26,6 +26,7 @@ const App = () => {
   const [checkedLights, setCheckedLights] = useState([])
   const [gameView, setGameView] = useState(false)
   const [singleGameData, setSingleGameData] = useState({})
+  const [lights, setLights] = useState({})
 
   // const handleClick = (event) => {
   //   setAnchorEl(event.currentTarget);
@@ -34,6 +35,16 @@ const App = () => {
   // const handleClose = () => {
   //   setAnchorEl(null);
   // };
+
+  window.addEventListener("beforeunload", function(e){
+    // Reset lights to previous values
+    for (const [key, value] of Object.entries(lights)) {
+      var light = key;
+      var x = lights[light].state.xy[0]
+      var y = lights[light].state.xy[1]
+      setColor(x, y, light)
+    }
+ }, false);
 
   const getAllGames = () => {
     fetch('/games?' + new URLSearchParams({
@@ -45,24 +56,24 @@ const App = () => {
       })
   }
 
-  const getGameScore = () => {
-    console.log(timeStamp)
-    fetch('/games?' + new URLSearchParams({
-      homeTeam: homeTeam,
-      delay: delay,
-      // timeStamp: timeStamp
-    }))
-      .then(response => response.json())
-      .then(response => {
-        if (response[0]) {
-          // setTimeStamp(response[0].timeStamp) @TODO
-          return scoreToXY(parseInt(response[0].homeScore), parseInt(response[0].awayScore))
-        }
-      }) //calculate color from scores
-      .then(colorXY => {
-        setColor(colorXY[0], colorXY[1])
-      }) //set color   
-  }
+  // const getGameScore = () => {
+  //   console.log(timeStamp)
+  //   fetch('/games?' + new URLSearchParams({
+  //     homeTeam: homeTeam,
+  //     delay: delay,
+  //     // timeStamp: timeStamp
+  //   }))
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       if (response[0]) {
+  //         // setTimeStamp(response[0].timeStamp) @TODO
+  //         return scoreToXY(parseInt(response[0].homeScore), parseInt(response[0].awayScore))
+  //       }
+  //     }) //calculate color from scores
+  //     .then(colorXY => {
+  //       setColor(colorXY[0], colorXY[1])
+  //     }) //set color   
+  // }
 
   const controlLights = (game) => {
     if (game) {
@@ -150,7 +161,7 @@ const App = () => {
 
   return (
     <div>
-      {!hueConfigured && <ConnectHue setHueUsername={setHueUsername} setHueConfigured={setHueConfigured} hueUsername={hueUsername} setCheckedLights={setCheckedLights} setBridgeIp={setBridgeIp} bridgeIp={bridgeIp} />}
+      {!hueConfigured && <ConnectHue setHueUsername={setHueUsername} setHueConfigured={setHueConfigured} hueUsername={hueUsername} setCheckedLights={setCheckedLights} setBridgeIp={setBridgeIp} bridgeIp={bridgeIp} setLights={setLights} />}
       { (hueConfigured && !gameView) &&
         <div className="App">
           <LiveGames lightColorHex={lightColorHex} liveGames={liveGames} setHomeTeam={setHomeTeam} setAwayTeam={setAwayTeam} setAwayColor={setAwayColor} setHomeColor={setHomeColor} awayTeam={awayTeam} homeTeam={homeTeam} setGameView={setGameView} setSingleGameData={setSingleGameData} />

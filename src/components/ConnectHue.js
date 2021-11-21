@@ -166,7 +166,10 @@ const ConnectHue = (props) => {
     const getLights = (ip) => {
         fetch(`https://${ip}/api/${props.hueUsername}/lights`)
             .then(res => res.json())
-            .then(res => setLights(res))
+            .then(res => {
+                setLights(res)
+                props.setLights(res)
+            })
 
     }
 
