@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
 const PickSingleColor = React.memo((props) => {
     const classes = useStyles();
     const [isOpen, setIsOpen] = useState(false);
-    const [teamColor, setTeamColor] = useState()
+    const [teamColor, setTeamColor] = useState(props.initialColor)
     // const [team, setTeam] = useState(1)
     // const [logo, setLogo] = useState()
 

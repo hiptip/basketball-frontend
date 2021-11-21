@@ -302,6 +302,7 @@ const GamePage = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isColorOpen, setIsColorOpen] = useState(false);
     const [colorPickTeam, setColorPickTeam] = useState();
+    const [initialColor, setInitialColor] = useState();
 
 
     const classes = useStyles(props);
@@ -364,6 +365,7 @@ const GamePage = (props) => {
 
     const changeColor = (team) => {
         setColorPickTeam(team)
+        props.team === "home" ? setInitialColor(props.homeColor) : setInitialColor(props.awayScore)
         togglePickColorModal()
     }
 
@@ -422,7 +424,7 @@ const GamePage = (props) => {
             </Grid>
             <button className={classes.calibrate} onClick={toggleCalibrateModal} >CALIBRATE LATENCY</button>
             <Calibration isOpen={isOpen} closeScreen={closeScreen} intervalId={props.intervalId} setIntervalId={props.setIntervalId} setDelay={props.setDelay} delay={props.delay} />
-            <PickSingleColor toggleModal={togglePickColorModal} isOpen={isColorOpen} closeScreen={closeColorScreen} team={colorPickTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} awayTeam={props.awayTeam} homeTeam={props.homeTeam} setGameView={props.setGameView} />
+            <PickSingleColor toggleModal={togglePickColorModal} isOpen={isColorOpen} closeScreen={closeColorScreen} team={colorPickTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} awayTeam={props.awayTeam} homeTeam={props.homeTeam} setGameView={props.setGameView} initialColor={initialColor} />
         </div>
     )
 }
