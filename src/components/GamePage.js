@@ -9,9 +9,11 @@ import Typography from "@material-ui/core/Typography";
 import Calibration from "./Calibration";
 import Grid from '@material-ui/core/Grid';
 import PickSingleColor from './PickSingleColor';
-import { nbaLogoMap } from '../util/logos'
+import { nbaLogoMap } from '../util/logos';
+import Arrow from '../assets/arrow.svg';
 
 const useStyles = makeStyles((theme) => ({
+
     '@keyframes livePulse': {
         from: {
             background:'#ff0000',
@@ -32,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     wrapper: {
+        overflow:'hidden!important',
         // border: '1px solid black',
         width: '99vw',
         height: '101vh',
@@ -185,6 +188,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily:'Roboto',
         background:'#fff',
         padding:'15px 15px',
+        fontWeight:500,
         borderTop:'2px solid #ccc',
         textTransform:'uppercase',
         fontSize:'1em',
@@ -221,23 +225,14 @@ const useStyles = makeStyles((theme) => ({
             fontSize:'1em'
         }
     },
-    calibrate: {
-        display: 'block',
-        backgroundColor:'black',
-        color:'white',
-        padding:'20px 30px',
-        margin:'40px auto',
-        borderRadius:'50px',
-        cursor:'pointer',
-        border:'none'
-    },
     buttonStyle: {
-        display:'block',
+        display:'flex',
+        alignItems:'center',
         cursor: 'pointer',
         fontSize: '1em',
         fontFamily:'Roboto',
-        fontWeight:'bold',
-        padding:'20px 30px',
+        fontweight:'bold',
+        padding:'20px 25px',
         textTransform:'uppercase',
         borderRadius:'50px',
         boxShadow:'0px 0px 10px rgba(0,0,0,.5)',
@@ -246,6 +241,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:'white',
         border:'none',
         color:'black',
+        fontWeight:500
+    },
+    arrow: {
+        display:'inline-flex',
+        width:10,
+        marginRight:10
     },
     changeColorPosition: {
         position:'absolute',
@@ -256,7 +257,7 @@ const useStyles = makeStyles((theme) => ({
         margin:'0 auto',
         lineHeight:'1em',
         fontFamily:'Roboto',
-        fontWeight:'bold',
+        fontWeight:'500',
         fontSize:'1em',
         display:'inline-flex',
         alignItems:'center',
@@ -398,18 +399,8 @@ const GamePage = (props) => {
 
     return (
         <div className={classes.wrapper}>
-            <div className={classes.calibrateOverlay}>
-            <div className={classes.modalBox}>
-                <h2 className={classes.h2}>CALIBRATE LATENCY</h2>
-                <div className={classes.slider}>
-                    <div className={classes.line}></div>
-                    <div className={classes.dot}></div>
-                </div>
-                <button className={classes.calibrate}>CONFIRM</button>
-            </div>
-            </div>
 
-            <button className={`${classes.goBack} ${classes.buttonStyle}`} onClick={toggleGameView}><img className={classes.arrow} src='../assets/arrow.svg' alt='arrow'></img>See all games</button>
+            <button className={`${classes.goBack} ${classes.buttonStyle}`} onClick={toggleGameView}><img className={classes.arrow} src={Arrow} alt='arrow'></img>See all games</button>
 
             <Grid container className={classes.gameInfo}>
                 <Grid item xs={1} sm={3} className={classes.logoItems}>

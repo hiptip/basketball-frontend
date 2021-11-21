@@ -35,7 +35,8 @@ const useStyles = makeStyles({
         padding:0,
         margin:0,
         fontSize:'32px',
-        textTransform:'uppercase'
+        fontFamily:'Roboto',
+        fontWeight:500
     },
     list: {
         textAlign: "left",
@@ -47,28 +48,26 @@ const useStyles = makeStyles({
     listItem: {
         padding: '5px 0px 5px 0px'
     },
-    button: {
-        backgroundColor: 'rgba(0,0,0,1)',
-        border: '2px solid rgba(255,255,255,1)',
-        color: 'white',
-        padding: '15px 32px',
-        textAlign: 'center',
-        textDecoration: 'none',
-        display: 'inline-block',
-        fontSize: '16px',
-        borderRadius: '100px',
-        width: 230,
-        left: 0,
-        right: 0,
-        margin: 'auto',
-        fontFamily: 'Roboto Mono',
-        fontWeight: 700,
-        '&:hover': {
-            backgroundColor: 'rgba(0,0,0,.8)',
-            border: '2px solid rgba(255,255,255,1)',
-            transition: 'background-color .1s ease-out, border .1s ease-out',
-            cursor:'pointer'
-        },
+    buttonStyle: {
+        display:'flex',
+        alignItems:'center',
+        cursor: 'pointer',
+        fontSize: '1em',
+        fontFamily:'Roboto',
+        fontWeight:'500',
+        border:'none',
+        margin:'0 auto',
+        padding:'20px 30px',
+        textTransform:'uppercase',
+        borderRadius:'50px',
+    },
+    buttonBlack: {
+        backgroundColor:'black',
+        color:'white'
+    },
+    buttonWhite: {
+        backgroundColor:'whitte',
+        color:'black'
     }
 })
 
@@ -471,7 +470,7 @@ const ChooseLights = (props) => {
     }
 
     const indicateLight = (val) => {
-        fetch(`http://${props.bridgeIp}/api/${props.hueUsername}/lights/${val}/state`, { 
+        fetch(`http://${props.bridgeIp}/api/${props.hueUsername}/lights/${val}/state`, {
             method: 'PUT',
             body: JSON.stringify({ "alert": "select" })
         })
@@ -486,7 +485,7 @@ const ChooseLights = (props) => {
                     <li className={classes.listItem} key={key}><input type="checkbox" value={key} onChange={onChange} onClick={() => indicateLight(key)} /> {value.name}</li>
                 )}
             </ul>
-            <button className={classes.button} onClick={setLights}>NEXT</button>
+            <button className={`${classes.buttonStyle} ${classes.buttonBlack}`} onClick={setLights}>NEXT</button>
         </div>
     )
 }

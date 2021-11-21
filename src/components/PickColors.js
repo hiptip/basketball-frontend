@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     modalHeader: {
         textAlign: 'center',
         fontFamily: 'Roboto',
+        fontWeight:500,
         margin:'20px auto 30px auto',
         maxWidth:500,
         // textTransform:'uppercase',
@@ -73,33 +74,30 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Roboto Mono',
         fontWeight: 700
     },
+    buttonStyle: {
+        display:'inline-flex',
+        alignItems:'center',
+        cursor: 'pointer',
+        fontSize: '1em',
+        fontFamily:'Roboto',
+        fontWeight:'500',
+        border:'none',
+        margin:'0 auto',
+        padding:'20px 30px',
+        textTransform:'uppercase',
+        borderRadius:'50px',
+    },
     nextButton: {
-        padding:'15px 30px',
-        cursor:'pointer',
-        fontFamily:'Roboto Mono',
         margin:5,
-        borderStyle: 'solid',
-        borderWidth: '1',
-        borderColor: 'black',
-        borderRadius: 100,
         background: 'black',
         color: 'white',
-        fontSize:'1em',
-        fontWeight:'bold'
+        border:'1px solid black'
     },
     prevButton: {
-        padding:'15px 30px',
-        cursor:'pointer',
-        fontFamily:'Roboto Mono',
         margin:5,
-        borderStyle: 'solid',
-        borderWidth: '1',
-        borderColor: 'black',
-        borderRadius: 100,
         background: 'white',
         color: 'black',
-        fontSize:'1em',
-        fontWeight:'bold'
+        border:'1px solid black'
     }
 }));
 
@@ -176,7 +174,7 @@ const PickColors = React.memo((props) => {
                         className={classes.colorPicker}
                     />
                     <footer className={classes.modalFooter}>
-                        {(team === 1) ? <button className={classes.nextButton} onClick={nextScreen}>NEXT</button> : <div><button className={classes.prevButton} onClick={prevScreen}>BACK</button><button className={classes.nextButton} onClick={nextScreen}>NEXT</button></div>}
+                        {(team === 1) ? <button className={`${classes.buttonStyle} ${classes.nextButton}`} onClick={nextScreen}>NEXT</button> : <div><button className={`${classes.buttonStyle} ${classes.prevButton}`} onClick={prevScreen}>BACK</button><button className={`${classes.buttonStyle} ${classes.nextButton}`} onClick={nextScreen}>NEXT</button></div>}
                     </footer>
                 </div>
             </Modal>
