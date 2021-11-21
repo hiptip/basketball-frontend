@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'black',
         border: 'none',
         color: 'white',
+        cursor: 'pointer',
         padding: '15px 32px',
         textAlign: 'center',
         textDecoration: 'none',
