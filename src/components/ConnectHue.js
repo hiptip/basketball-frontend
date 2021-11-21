@@ -68,26 +68,34 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center'
     },
     staticImage: {
-        width: '100%',
+        width: '500px',
         paddingBottom: 40,
+        '@media (max-width:600px)': {
+            width: '90vw',
+        },
+
         // filter: 'dropShadow(50px 5px 5px #222)' get this working
     },
-    button: {
-        backgroundColor: 'black',
-        border: 'none',
-        color: 'white',
-        padding: '15px 32px',
-        textAlign: 'center',
-        textDecoration: 'none',
-        display: 'inline-block',
-        fontSize: '16px',
-        borderRadius: '100px',
-        width: 230,
-        fontFamily: 'Roboto Mono',
-        fontWeight: 700,
-        '&:hover': {
-            backgroundColor: '#333131',
-        },
+    buttonStyle: {
+        display:'flex',
+        alignItems:'center',
+        cursor: 'pointer',
+        fontSize: '1em',
+        fontFamily:'Roboto',
+        fontWeight:'500',
+        border:'none',
+        margin:'0 auto',
+        padding:'20px 30px',
+        textTransform:'uppercase',
+        borderRadius:'50px',
+    },
+    buttonBlack: {
+        backgroundColor:'black',
+        color:'white'
+    },
+    buttonWhite: {
+        backgroundColor:'whitte',
+        color:'black'
     },
     modalBox: {
         position: 'fixed',
@@ -110,7 +118,8 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "150px",
     },
     heading: {
-        textTransform:'uppercase',
+        fontFamily:'Roboto',
+        fontWeight:400,
         margin:'30px 0 0 0',
         '@media (max-width:600px)': {
             fontSize:'1.1em'
@@ -188,7 +197,7 @@ const ConnectHue = (props) => {
                 <div className={classes.mymodal}>
                     <div className={classes.center}>
                         <img className={classes.staticImage} src={Static} alt="" />
-                        <button className={classes.button} onClick={getBridgeApi}>Start Pairing</button>
+                        <button className={`${classes.buttonStyle} ${classes.buttonWhite}`}  onClick={getBridgeApi}>Start Pairing</button>
                     </div>
 
                 </div>

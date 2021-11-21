@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
     },
     centerSpread: {
         alignItems: 'center',
-        fontSize: 20,
         padding:20,
         color:'white',
         // borderRadius:20,
@@ -95,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
     },
     quarter: {
         margin:0,
+        fontFamily:'roboto'
     },
     timeRemaining: {
         margin:0,
@@ -196,8 +196,7 @@ const NbaGameCard = (props) => {
                 </Grid>
                 <Grid item xs={2}>
                     <div className={classes.centerSpread}>
-                        <p className={classes.quarter}>{props.quarter}</p>
-                        <p className={classes.timeRemaining}>{ props.timeRemaining }</p>
+                        <p className={classes.quarter}>{props.quarter} | { props.timeRemaining }</p>
                     </div>
                 </Grid>
                 <Grid item xs={3}>
