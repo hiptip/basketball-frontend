@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme) => ({
     },
     modalHeader: {
         textAlign: 'center',
-        fontFamily: 'Roboto Mono',
+        fontFamily: 'Roboto',
         margin:'20px auto 30px auto',
         maxWidth:500,
-        textTransform:'uppercase',
+        // textTransform:'uppercase',
         [theme.breakpoints.down('xs')]: {
             fontSize:'1.1em'
         }
@@ -169,6 +169,7 @@ const PickColors = React.memo((props) => {
                     <img className={classes.logo} src={getLogoUrl(team)}></img>
                     </div>
                     <h1 className={classes.modalHeader}>Choose {name} Color</h1>
+
                     <ChromePicker
                         color={teamColor}
                         onChangeComplete={handleChangeComplete}
