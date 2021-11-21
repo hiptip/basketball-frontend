@@ -163,8 +163,9 @@ const PickColors = React.memo((props) => {
                 shouldCloseOnOverlayClick={true}
             >
                 <div>
+                    <div onClick={props.closeScreen}>X</div>
                     <div class={classes.logoContainerColorPicker}>
-                    <img className={classes.logo} src={getLogoUrl(team)}></img>
+                        <img className={classes.logo} src={getLogoUrl(team)} alt={`${team} logo`} ></img>
                     </div>
                     <h1 className={classes.modalHeader}>Choose {name} Color</h1>
 
