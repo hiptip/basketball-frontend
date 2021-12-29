@@ -470,7 +470,7 @@ const ChooseLights = (props) => {
     }
 
     const indicateLight = (val) => {
-        fetch(`http://${props.bridgeIp}/api/${props.hueUsername}/lights/${val}/state`, {
+        fetch(`https://${props.bridgeIp}/api/${props.hueUsername}/lights/${val}/state`, {
             method: 'PUT',
             body: JSON.stringify({ "alert": "select" })
         })
