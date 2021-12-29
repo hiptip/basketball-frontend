@@ -1,26 +1,28 @@
 {
   "files": {
-    "main.css": "/basketball-frontend/static/css/main.204b9e9c.chunk.css",
-    "main.js": "/basketball-frontend/static/js/main.2328d082.chunk.js",
-    "main.js.map": "/basketball-frontend/static/js/main.2328d082.chunk.js.map",
-    "runtime-main.js": "/basketball-frontend/static/js/runtime-main.c6e1b27a.js",
-    "runtime-main.js.map": "/basketball-frontend/static/js/runtime-main.c6e1b27a.js.map",
-    "static/js/2.5d23229d.chunk.js": "/basketball-frontend/static/js/2.5d23229d.chunk.js",
-    "static/js/2.5d23229d.chunk.js.map": "/basketball-frontend/static/js/2.5d23229d.chunk.js.map",
-    "static/js/3.9b6584fa.chunk.js": "/basketball-frontend/static/js/3.9b6584fa.chunk.js",
-    "static/js/3.9b6584fa.chunk.js.map": "/basketball-frontend/static/js/3.9b6584fa.chunk.js.map",
+    "main.css": "/basketball-frontend/static/css/main.b1e21ffd.chunk.css",
+    "main.js": "/basketball-frontend/static/js/main.b8daaae1.chunk.js",
+    "main.js.map": "/basketball-frontend/static/js/main.b8daaae1.chunk.js.map",
+    "runtime-main.js": "/basketball-frontend/static/js/runtime-main.55b9d554.js",
+    "runtime-main.js.map": "/basketball-frontend/static/js/runtime-main.55b9d554.js.map",
+    "static/js/2.53bf2f7d.chunk.js": "/basketball-frontend/static/js/2.53bf2f7d.chunk.js",
+    "static/js/2.53bf2f7d.chunk.js.map": "/basketball-frontend/static/js/2.53bf2f7d.chunk.js.map",
+    "static/js/3.88da388f.chunk.js": "/basketball-frontend/static/js/3.88da388f.chunk.js",
+    "static/js/3.88da388f.chunk.js.map": "/basketball-frontend/static/js/3.88da388f.chunk.js.map",
     "index.html": "/basketball-frontend/index.html",
-    "static/css/main.204b9e9c.chunk.css.map": "/basketball-frontend/static/css/main.204b9e9c.chunk.css.map",
-    "static/js/2.5d23229d.chunk.js.LICENSE.txt": "/basketball-frontend/static/js/2.5d23229d.chunk.js.LICENSE.txt",
-    "static/media/arrow.7ee630f3.svg": "/basketball-frontend/static/media/arrow.7ee630f3.svg",
-    "static/media/bg1.e4cd1857.svg": "/basketball-frontend/static/media/bg1.e4cd1857.svg",
-    "static/media/splash-basketball.90368115.svg": "/basketball-frontend/static/media/splash-basketball.90368115.svg",
-    "static/media/splash-lockup.0aedecb1.svg": "/basketball-frontend/static/media/splash-lockup.0aedecb1.svg"
+    "precache-manifest.75de80864a56053b190e7f027b9839bb.js": "/basketball-frontend/precache-manifest.75de80864a56053b190e7f027b9839bb.js",
+    "service-worker.js": "/basketball-frontend/service-worker.js",
+    "static/css/main.b1e21ffd.chunk.css.map": "/basketball-frontend/static/css/main.b1e21ffd.chunk.css.map",
+    "static/js/2.53bf2f7d.chunk.js.LICENSE.txt": "/basketball-frontend/static/js/2.53bf2f7d.chunk.js.LICENSE.txt",
+    "static/media/arrow.svg": "/basketball-frontend/static/media/arrow.551a7c87.svg",
+    "static/media/bg1.svg": "/basketball-frontend/static/media/bg1.3897d9ca.svg",
+    "static/media/splash-basketball.svg": "/basketball-frontend/static/media/splash-basketball.aaf4a054.svg",
+    "static/media/splash-lockup.svg": "/basketball-frontend/static/media/splash-lockup.b5da56a6.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.c6e1b27a.js",
-    "static/js/2.5d23229d.chunk.js",
-    "static/css/main.204b9e9c.chunk.css",
-    "static/js/main.2328d082.chunk.js"
+    "static/js/runtime-main.55b9d554.js",
+    "static/js/2.53bf2f7d.chunk.js",
+    "static/css/main.b1e21ffd.chunk.css",
+    "static/js/main.b8daaae1.chunk.js"
   ]
 }
