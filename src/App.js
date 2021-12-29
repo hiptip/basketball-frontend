@@ -47,7 +47,7 @@ const App = () => {
  }, false);
 
   const getAllGames = () => {
-    fetch('/games?' + new URLSearchParams({
+    fetch('https://nba-hue-backend.herokuapp.com/games?' + new URLSearchParams({
       delay: delay,
     }))
       .then(response => response.json())
