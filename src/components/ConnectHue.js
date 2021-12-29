@@ -158,12 +158,16 @@ const ConnectHue = (props) => {
         const ip = res[0].internalipaddress
         props.setBridgeIp(ip)
         const intId = setInterval(() => {
-            fetch(`http://${ip}/api`, {
+            fetch(`https://${ip}/api`, {
                 method: 'POST',
                 body: JSON.stringify({ "devicetype": "hue-nba" })
             })
                 .then(res => res.json())
                 .then(res => checkSuccess(res, ip))
+                .catch(err => {
+                    console.log(err)
+                    window.open(`https://${ip}/api`, '_blank')
+                })
         }, 3000)
         setIntervalId(intId)
         setTimeout(() => {
@@ -171,8 +175,8 @@ const ConnectHue = (props) => {
         }, 30000)
     }
 
-    const getLights = (ip) => {
-        fetch(`http://${ip}/api/${props.hueUsername}/lights`)
+    const getLights = (ip, hueUsername) => {
+        fetch(`https://${ip}/api/${hueUsername}/lights`)
             .then(res => res.json())
             .then(res => {
                 setLights(res)
@@ -188,7 +192,7 @@ const ConnectHue = (props) => {
             localStorage.setItem('hueUsername', obj["success"]["username"])
             props.setHueUsername(obj["success"]["username"])
             setHueConnected(true)
-            getLights(ip)
+            getLights(ip, obj["success"]["username"])
         }
     }
 

@@ -47,13 +47,13 @@ const App = () => {
  }, false);
 
   const getAllGames = () => {
-    fetch('https://nba-hue-backend.herokuapp.com/games?' + new URLSearchParams({
-      delay: delay,
-    }))
-      .then(response => response.json())
-      .then(response => {
-        setLiveGames(response)
-      })
+    // fetch('https://nba-hue-backend.herokuapp.com/games?' + new URLSearchParams({
+    //   delay: delay,
+    // }))
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     setLiveGames(response)
+    //   })
   }
 
   // const getGameScore = () => {
