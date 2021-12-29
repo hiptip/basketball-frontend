@@ -125,14 +125,21 @@ const LiveGames = (props) => {
                     LIVE
                 </h2>
             </Grid>
-            <Grid item xs={12}>
-                <h1 className={classes.liveGameHeading}>Choose a live game</h1>
-            </Grid>
-            {props.liveGames.map(data => //change to props.liveGames
+            {(props.liveGames.length > 0) && 
+                <Grid item xs={12}>
+                    <h1 className={classes.liveGameHeading}>Choose a live game</h1>
+                </Grid>
+            }
+            {(props.liveGames.length > 0) && props.liveGames.map(data => //change to props.liveGames
                 <Grid item xs={12}>
                     <NbaGameCard {...data} lightColorHex={props.lightColorHex} setHomeTeam={props.setHomeTeam} setAwayTeam={props.setAwayTeam} setAwayColor={props.setAwayColor} setHomeColor={props.setHomeColor} setGameView={props.setGameView} setSingleGameData={props.setSingleGameData} />
                 </Grid>
             )}
+             {(props.liveGames.length === 0) &&
+                <Grid item xs={12}>
+                    <h1 className={classes.liveGameHeading}>No games in progress</h1>
+                </Grid>
+            }
         </Grid>
     )
 }
