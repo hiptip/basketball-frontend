@@ -146,7 +146,6 @@ const ConnectHue = (props) => {
     // const [bridgeIp, setBridgeIp] = useState()
     const [hueConnected, setHueConnected] = useState(false)
     const [lights, setLights] = useState({})
-    const [awaitCert, setAwaitCert] = useState(true)
 
     const getBridgeApi = () => {
         setWaiting(true)
@@ -158,6 +157,7 @@ const ConnectHue = (props) => {
     const linkHue = (res) => {
         const ip = res[0].internalipaddress
         props.setBridgeIp(ip)
+        let openCert = false
         const intId = setInterval(() => {
             fetch(`https://${ip}/api`, {
                 method: 'POST',
@@ -167,9 +167,9 @@ const ConnectHue = (props) => {
                 .then(res => checkSuccess(res, ip))
                 .catch(err => {
                     console.log(err)
-                    if (awaitCert) {
+                    if (!openCert) {
                         window.open(`https://${ip}/api`, '_blank')
-                        setAwaitCert(false)
+                        openCert = true
                     }
                 })
         }, 3000)
