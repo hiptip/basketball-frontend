@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://hiptip.github.io/basketball-frontend/",
+  "homepage": "http://basketball.lighting/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
