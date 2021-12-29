@@ -158,7 +158,7 @@ const ConnectHue = (props) => {
         const ip = res[0].internalipaddress
         props.setBridgeIp(ip)
         const intId = setInterval(() => {
-            fetch(`http://${ip}/api`, {
+            fetch(`https://${ip}/api`, {
                 method: 'POST',
                 body: JSON.stringify({ "devicetype": "hue-nba" })
             })
