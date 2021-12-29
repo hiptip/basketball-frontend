@@ -146,6 +146,7 @@ const ConnectHue = (props) => {
     // const [bridgeIp, setBridgeIp] = useState()
     const [hueConnected, setHueConnected] = useState(false)
     const [lights, setLights] = useState({})
+    const [awaitCert, setAwaitCert] = useState(true)
 
     const getBridgeApi = () => {
         setWaiting(true)
@@ -166,7 +167,10 @@ const ConnectHue = (props) => {
                 .then(res => checkSuccess(res, ip))
                 .catch(err => {
                     console.log(err)
-                    window.open(`https://${ip}/api`, '_blank')
+                    if (awaitCert) {
+                        window.open(`https://${ip}/api`, '_blank')
+                        setAwaitCert(false)
+                    }
                 })
         }, 3000)
         setIntervalId(intId)
