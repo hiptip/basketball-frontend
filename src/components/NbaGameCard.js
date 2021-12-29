@@ -196,7 +196,7 @@ const NbaGameCard = (props) => {
                 </Grid>
                 <Grid item xs={2}>
                     <div className={classes.centerSpread}>
-                        <p className={classes.quarter}>{props.quarter} | { props.timeRemaining }</p>
+                        <p className={classes.quarter}>{props.quarter}Q | { props.minutesRemaining }:{ (props.secondsRemaining > 9) ? props.secondsRemaining : '0' + props.secondsRemaining }</p>
                     </div>
                 </Grid>
                 <Grid item xs={3}>

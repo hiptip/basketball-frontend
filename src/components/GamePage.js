@@ -394,7 +394,7 @@ const GamePage = (props) => {
     }
 
 
-    var game = mockGameData.find(game => game.homeTeam === props.homeTeam) //default to state if no value
+    var game = props.liveGames.find(game => game.homeTeam === props.homeTeam) //default to state if no value
     // console.log(game)
 
     return (
@@ -422,7 +422,7 @@ const GamePage = (props) => {
                         <div className={classes.live}>
                             LIVE
                         </div>
-                        <p className={classes.gameTime}>{game ? game.gameQuarter : ""} | {game ? game.gameTime : ""}</p>
+                        <p className={classes.gameTime}>{game.quarter}Q | {game.minutesRemaining}:{(game.secondsRemaining > 9) ? game.secondsRemaining : "0" + game.secondsRemaining}</p>
                         <p className={classes.small} onClick={toggleCalibrateModal}>Calibrate</p>
                     </div>
                 </Grid>

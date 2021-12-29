@@ -155,7 +155,7 @@ const App = () => {
     }
     var intId = setInterval(() => {
       getAllGames()
-    }, 1000)
+    }, 2000)
     setCurrentIntervalId(intId)
   }
 
