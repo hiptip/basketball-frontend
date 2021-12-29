@@ -26,11 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-<<<<<<< HEAD
     "deploy": "gh-pages -b master -d build",
-=======
-    "deploy": "gh-pages -d build",
->>>>>>> parent of 6bce2dcc... Updates
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
