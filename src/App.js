@@ -131,7 +131,7 @@ const App = () => {
 
   const setColor = (x, y, lights) => {
     for (let [index, val] of lights.entries()) {
-      fetch(`http://${bridgeIp}/api/${hueUsername}/lights/${val}/state`, { 
+      fetch(`https://${bridgeIp}/api/${hueUsername}/lights/${val}/state`, { 
         method: 'PUT',
         body: JSON.stringify({ "xy": [x, y] })
       })
