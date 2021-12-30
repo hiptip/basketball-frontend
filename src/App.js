@@ -10,7 +10,7 @@ import GamePage from './components/GamePage';
 
 const App = () => {
   const [homeColor, setHomeColor] = useState("#1271ff")
-  const [awayColor, setAwayColor] = useState("#009e05")
+  const [awayColor, setAwayColor] = useState("#009e05") 
   const [neutralColor, setNeutralColor] = useState([247, 232, 195])
   const [currentIntervalId, setCurrentIntervalId] = useState()
   const [lightColorHex, setLightColorHex] = useState("#f7e8c3")
